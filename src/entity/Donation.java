@@ -4,9 +4,7 @@ package entity;
  *
  * @author Adriel
  */
-//This is a test
-//Thiis is test 2
-//This is tesssst 3
+
 public class Donation implements Comparable<Donation>{
     
     private Donor donor;
