@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class DonationManagementUI {
+
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Donation Management");
+
+
+    private int donManMenu(){
+        int choice;
+
+        System.out.println("1. Add New Donation");
+        System.out.println("2. Remove Existing Donation");
+        System.out.println("3. Search Donation Details");
+        System.out.println("4. Amend Donation Details");
+        System.out.println("5. View Donations");
+        System.out.println("6. Generate Donations Report");
+        System.out.print("/nPlease Enter Choice: ");
+        input.nextLine();
+
+
+        try{
+            System.out.print("/nPlease Enter Choice: ");
+            input.nextLine();
+        } catch (IOException e){
+            System.out.println("Invalid Input! Please enter an integer within the valid range of choices");
+        }
+        
+        throw new IOException("Please Enter A Valid Number!")
+        return choice;
+    }
+
+    private boolean numChk(T item){
+        if ()
+    }
+
+    private boolean addNewDonationMenu(){
+
+    }
+
+
+}
