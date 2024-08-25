@@ -8,6 +8,8 @@ import adt.SortedListInterface;
  *
  * @author Adriel
  */
+
+//Testing
 public class DonationManagement {
     private SortedListInterface<Donation> donationList = new DoublyLinkedList<>();
     
