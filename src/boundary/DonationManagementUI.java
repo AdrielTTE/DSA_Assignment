@@ -118,12 +118,23 @@ public class DonationManagementUI {
     }
 
     private void addDonationMenu(){
+        String itemName;
+        int quantity;
         System.out.print("Enter Donor Name: ");
         String name = input.nextLine();
 
         //To implement loop logic, how many items to add?
         System.out.print("Enter Number of Item(s) Donated: ");
         int quantityOfItems = numChk();
+
+        for (int i = 1; i <= quantityOfItems; i++){
+            System.out.print("Enter Item " + i " : ");
+            itemName = input.nextLine();
+            System.out.print("Enter Quantity of Item " + i + " : ");
+            quantity = numChk();
+
+            //Create new Donation here 
+        }
 
         
 
