@@ -7,8 +7,8 @@ public class DonationManagementUI {
     System.out.println("Donation Management");
 
 
-    private int donManMenu(){
-        int choice;
+    public int donManMenu(){
+        
 
         System.out.println("1. Add New Donation");
         System.out.println("2. Remove Existing Donation");
@@ -16,23 +16,30 @@ public class DonationManagementUI {
         System.out.println("4. Amend Donation Details");
         System.out.println("5. View Donations");
         System.out.println("6. Generate Donations Report");
-        System.out.print("/nPlease Enter Choice: ");
-        input.nextLine();
+        System.out.println("0. Return");        
 
+    
+    
+    }
+        
 
+    private boolean numChk(){
+        int choice;
+        boolean cont = false;
+
+        while(!cont){
         try{
             System.out.print("/nPlease Enter Choice: ");
-            input.nextLine();
+            choice = input.nextLine();
+            cont = true;
         } catch (IOException e){
             System.out.println("Invalid Input! Please enter an integer within the valid range of choices");
+            
         }
         
-        throw new IOException("Please Enter A Valid Number!")
-        return choice;
     }
+    return choice;
 
-    private boolean numChk(T item){
-        if ()
     }
 
     private boolean addNewDonationMenu(){
