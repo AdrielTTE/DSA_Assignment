@@ -23,7 +23,7 @@ public class DonationManagement {
         return true;
     }
     
-    //Indicator for latest iteration
+    //This is the latest change
    
     
     
