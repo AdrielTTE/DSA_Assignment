@@ -15,4 +15,16 @@ import java.util.Iterator;
 public class DonationManagement {
     private SortedListInterface<Donation> donationList = new DoublyLinkedList<>();
     
+    
+    public boolean addNewDonation(Donor donor, String itemDonated, int quantity, double valuePerQuantity){
+        
+        donationList.add(new Donation(donor, itemDonated, quantity, valuePerQuantity));
+        
+        return true;
+    }
+    
+    //Indicator for latest iteration
+   
+    
+    
 }

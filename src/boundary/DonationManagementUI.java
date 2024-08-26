@@ -1,16 +1,20 @@
+
+
 import java.util.Scanner;
 import control.DonationManagement;
+import boundary.CharitySystemUI;
+
 
 public class DonationManagementUI {
 
     Scanner input = new Scanner(System.in);
 
-    System.out.println("Donation Management");
+    
 
 
     public void donManMenu(){
-        
-
+        System.out.println("Donation Management");
+        System.out.println("==============================");
         System.out.println("1. Add New Donation");
         System.out.println("2. Remove Existing Donation");
         System.out.println("3. Search Donation Details");
@@ -54,16 +58,15 @@ public class DonationManagementUI {
     
     }
         
-    //To move into control class?
     private int numChk(int firstNum, int lastNum){
-        int choice;
+        int choice=-1;
         boolean cont = false;
  
         while(!cont){
 
         try{
             System.out.print("/nPlease Enter Choice: ");
-            choice = input.nextLine();
+            choice = input.nextInt();
 
             if (choice >= firstNum && choice <= lastNum){
                 cont = true;
@@ -74,7 +77,7 @@ public class DonationManagementUI {
             }
             
 
-        } catch (IOException e){
+        } catch (Exception e){
             System.out.println("Invalid Input! Please enter an integer within the valid range of choices");
             
         }
@@ -86,9 +89,10 @@ public class DonationManagementUI {
 
     private int numChk(){
         int quantity;
+        int choice = -1;
         boolean cont = false;
         int minimum = 1;
-        int maximum = 10000
+        int maximum = 10000;
         while(!cont){
 
         try{
@@ -107,7 +111,7 @@ public class DonationManagementUI {
             }
             
 
-        } catch (IOException e){
+        } catch (Exception e){
             System.out.println("Invalid Input! Please enter a number");
             
         }
@@ -128,7 +132,7 @@ public class DonationManagementUI {
         int quantityOfItems = numChk();
 
         for (int i = 1; i <= quantityOfItems; i++){
-            System.out.print("Enter Item " + i " : ");
+            System.out.print("Enter Item " + i + " : ");
             itemName = input.nextLine();
             System.out.print("Enter Quantity of Item " + i + " : ");
             quantity = numChk();
@@ -136,10 +140,7 @@ public class DonationManagementUI {
             //Create new Donation here 
         }
 
-        
-
-        System.out.print("Enter Quantity: ");
-        int quantity
+       
     }
 
     private void removeDonationMenu(){
@@ -162,7 +163,7 @@ public class DonationManagementUI {
 
     }
 
-    private void 
+    
 
 //Latest iteration
 }

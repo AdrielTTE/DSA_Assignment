@@ -11,19 +11,19 @@ public class Donation implements Comparable<Donation>{
     private String itemDonated;
     private int quantity;
     private double valuePerQuantity;
-    private double totalValue = calcTotalValue();
+    private double totalValue;
 
     //Constructor
     
     public Donation(){
         
     }
-    public Donation(Donor donor, String itemDonated, int quantity, double valuePerQuantity, double totalValue) {
+    public Donation(Donor donor, String itemDonated, int quantity, double valuePerQuantity) {
         this.donor = donor;
         this.itemDonated = itemDonated;
         this.quantity = quantity;
         this.valuePerQuantity = valuePerQuantity;
-        this.totalValue = totalValue;
+        this.totalValue  = calcTotalValue();
     }
 
     //Getter
