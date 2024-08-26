@@ -4,6 +4,8 @@ package control;
 import entity.Donation;
 import adt.DoublyLinkedList;
 import adt.SortedListInterface;
+
+import java.util.Iterator;
 /**
  *
  * @author Adriel
