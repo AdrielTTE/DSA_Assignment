@@ -18,20 +18,35 @@ public class DonationManagementUI {
         System.out.println("6. Generate Donations Report");
         System.out.println("0. Return");        
 
-    
+
+        switch(numChk(0,6)){
+                case 1: 
+
+
+        }
     
     }
         
 
-    private boolean numChk(){
+    private int numChk(int firstNum, int lastNum){
         int choice;
         boolean cont = false;
-
+ 
         while(!cont){
+
         try{
             System.out.print("/nPlease Enter Choice: ");
             choice = input.nextLine();
-            cont = true;
+
+            if (choice >= firstNum && choice <= lastNum){
+                cont = true;
+            }
+
+            else {
+                System.out.println("Invalid number! Please enter integer between " + firstNum + " and " + lastNum);
+            }
+            
+
         } catch (IOException e){
             System.out.println("Invalid Input! Please enter an integer within the valid range of choices");
             
