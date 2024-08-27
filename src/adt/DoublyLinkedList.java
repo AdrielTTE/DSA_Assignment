@@ -50,7 +50,7 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
                 currentNode = currentNode.next;
             }
             
-            return (T)currentNode;
+            return currentNode.data;
             
         }
         

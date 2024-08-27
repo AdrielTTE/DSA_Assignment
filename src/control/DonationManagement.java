@@ -7,6 +7,7 @@ import adt.SortedListInterface;
 import boundary.CharitySystemUI;
 import boundary.DonationManagementUI;
 
+
 import java.util.Iterator;
 /**
  *
@@ -22,19 +23,22 @@ public class DonationManagement {
         
     }
     
-    public int DonationSelection(){
+    public void DonationSelection(){
+        boolean cont = true;
+        while(cont){
+            
         
         switch(dao.DonationManagementInitializer.donationManagementUI.donManMenu()){
                 case 1: 
-                    
+                    addDonation();
                     break;
 
                 case 2: 
-                    removeDonationMenu();
+                    removeDonation();
                     break;
 
                 case 3: 
-                    searchDonationMenu();
+                    searchDonation();
                     break;
 
                 case 4:
@@ -50,20 +54,38 @@ public class DonationManagement {
                     break;
 
                 default:
+                    cont = false;
                     break;
 
-
+            }
         }
     }
-    public boolean addNewDonation(Donor donor, String itemDonated, int quantity, double valuePerQuantity){
-        addNewDonationMenu();
-        donationList.add(new Donation(donor, itemDonated, quantity, valuePerQuantity));
+        
+
+    public SortedListInterface<Donation> getDonationList() {
+        return donationList;
+    }
+    
+    //For adding a new Donation
+    public void addDonation(){
+        dao.DonationManagementInitializer.donationManagementUI.addNewDonationMenu();
+        
+    }
+    
+    public boolean addNewDonation(Donor donor, String itemDonated, String category, int quantity, double valuePerQuantity){
+        
+        donationList.add(new Donation(donor, itemDonated, category, quantity, valuePerQuantity));
         
         return true;
     }
     
-    public boolean removeDonation(Donation donation){
+    
+    //For removing a Donation
+    public boolean removeDonation(){
         boolean result = false;
+        dao.DonationManagementInitializer.donationManagement.searchDonation(input.nextLine());
+        
+        //To continue
         if(donationList.remove(donation)){
             
             result = true;
@@ -72,15 +94,22 @@ public class DonationManagement {
         return result;
     }
     
-    public Donation searchDonation(Donation donationName){
-        
-        return donationList.search(donationName);
+    //To implement using iterator?
+    public Donation searchDonation(String item){
+        for (Donation donation : donationList) {
+    if (donation.getItemDonated().equalsIgnoreCase("SpecificItem")) {
+        Donor donor = donation.getDonor();
+        System.out.println("Donor Name: " + donor.getName());
+        break; // If you only want the first match
+    }
+}
+        return donationList.search(donationList.getEntry(Integer.MIN_VALUE));
         
     }
     
     public boolean amendDonation(Donation donationName){
         
-        //To find a way to access attributes in Donation
+        //Use search
         boolean result = false;
         
         
@@ -93,12 +122,22 @@ public class DonationManagement {
     }
     
     public void generateReport(){
-        System.out.println("Generate Report");
-        System.out.println("==================================================");
-        System.out.println("1. Total Valuation of Donations Report");
-        System.out.println("2. Statistical Breakdown of Donated Items Report");
-        System.out.println("3. Donated Items: Sorted by Donor");
-        System.out.println("Please Enter Choice: ");
+        switch(dao.DonationManagementInitializer.donationManagementUI.generateReportMenu()){
+            case 1:
+                //To sort and then to display
+                break;
+                
+            case 2:
+                //Number of items per category
+                break;
+                
+            case 3:
+                //Donated items sorted by Donor
+                break;
+                
+            default:
+                break;
+        }
         //ToString method, written in report format
     }
     
