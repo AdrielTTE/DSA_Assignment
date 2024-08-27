@@ -1,18 +1,19 @@
-
+package boundary;
 
 import java.util.Scanner;
 import control.DonationManagement;
 import boundary.CharitySystemUI;
-
+import utility.CheckNumberInput;
+import control.CharitySystem;
 
 public class DonationManagementUI {
 
     Scanner input = new Scanner(System.in);
+    public DonationManagementUI(){
+        
+    }
 
-    
-
-
-    public static void donManMenu(){
+    public int donManMenu(){
         System.out.println("Donation Management");
         System.out.println("==============================");
         System.out.println("1. Add New Donation");
@@ -22,72 +23,65 @@ public class DonationManagementUI {
         System.out.println("5. View Donations");
         System.out.println("6. Generate Donations Report");
         System.out.println("0. Return");        
+        
+        return CheckNumberInput.numChk(0,6);
 
-
-        switch(numChk(0,6)){
-                case 1: 
-                    addDonationMenu();
-                    break;
-
-                case 2: 
-                    removeDonationMenu();
-                    break;
-
-                case 3: 
-                    searchDonationMenu();
-                    break;
-
-                case 4:
-                    amendDonationMenu();
-                    break;
-
-                case 5:
-                    viewDonationMenu();
-                    break;
-
-                case 6: 
-                    generateReportMenu();
-                    break;
-
-                default:
-                    CharitySystemUI.MainMenu();
-                    break;
-
-
-        }
+        
     
     }
         
-    private int numChk(int firstNum, int lastNum){
-        int choice=-1;
-        boolean cont = false;
- 
-        while(!cont){
 
-        try{
-            System.out.print("/nPlease Enter Choice: ");
-            choice = input.nextInt();
+    private void addDonationMenu(){
+        //To add this into control class?
+        String itemName;
+        int quantity;
+        System.out.print("Enter Donor Name: ");
+        String name = input.nextLine();
 
-            if (choice >= firstNum && choice <= lastNum){
-                cont = true;
-            }
+        //To implement loop logic, how many items to add?
+        System.out.print("Enter Number of Item(s) Donated: ");
+        int quantityOfItems = quantityChk();
 
-            else {
-                System.out.println("Invalid number! Please enter integer between " + firstNum + " and " + lastNum);
-            }
-            
+        for (int i = 1; i <= quantityOfItems; i++){
+            System.out.print("Enter Item " + i + " : ");
+            itemName = input.nextLine();
+            System.out.print("Enter Quantity of Item " + i + " : ");
+            quantity = quantityChk();
 
-        } catch (Exception e){
-            System.out.println("Invalid Input! Please enter an integer within the valid range of choices");
-            
+        // To add more logic
         }
+
+       
+    }
+
+    private void removeDonationMenu(){
+        //To change the wording
+     
+        System.out.print("Enter donation to remove: ");
+        String itemToRemove = input.nextLine();
+        CharitySystem.donationManagement.removeDonation(Donation(itemToRemove));
         
     }
-    return choice;
+
+    private static void searchDonationMenu(){
 
     }
 
-    private int numChk(){
+    private static void amendDonationMenu(){
+
+    }
+
+    private static void viewDonationMenu(){
+
+    }
+
+    private static void generateReportMenu(){
+
+    }
+
+    
+    //Utility to limit the amount that a donor can sponsor (Cannot be infinity)
+    private static int quantityChk(){
         int quantity;
         int choice = -1;
         boolean cont = false;
@@ -120,50 +114,6 @@ public class DonationManagementUI {
     return choice;
 
     }
-
-    private void addDonationMenu(){
-        String itemName;
-        int quantity;
-        System.out.print("Enter Donor Name: ");
-        String name = input.nextLine();
-
-        //To implement loop logic, how many items to add?
-        System.out.print("Enter Number of Item(s) Donated: ");
-        int quantityOfItems = numChk();
-
-        for (int i = 1; i <= quantityOfItems; i++){
-            System.out.print("Enter Item " + i + " : ");
-            itemName = input.nextLine();
-            System.out.print("Enter Quantity of Item " + i + " : ");
-            quantity = numChk();
-
-            //Create new Donation here 
-        }
-
-       
-    }
-
-    private void removeDonationMenu(){
-
-    }
-
-    private void searchDonationMenu(){
-
-    }
-
-    private void amendDonationMenu(){
-
-    }
-
-    private void viewDonationMenu(){
-
-    }
-
-    private void generateReportMenu(){
-
-    }
-
-    
 
 //Latest iteration
 }

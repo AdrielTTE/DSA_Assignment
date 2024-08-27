@@ -9,6 +9,7 @@ public class Donation implements Comparable<Donation>{
     
     private Donor donor;
     private String itemDonated;
+    private String category;
     private int quantity;
     private double valuePerQuantity;
     private double totalValue;
@@ -19,13 +20,16 @@ public class Donation implements Comparable<Donation>{
         
     }
     
-    public Donation(Donor donor, String itemDonated, int quantity, double valuePerQuantity) {
+    public Donation(Donor donor, String itemDonated, String category, int quantity, double valuePerQuantity) {
         this.donor = donor;
+        this.category = category;
         this.itemDonated = itemDonated;
         this.quantity = quantity;
         this.valuePerQuantity = valuePerQuantity;
         this.totalValue  = calcTotalValue();
     }
+
+   
 
     //Getter
     public Donor getDonor() {
@@ -34,6 +38,10 @@ public class Donation implements Comparable<Donation>{
 
     public String getItemDonated() {
         return itemDonated;
+    }
+    
+     public String getCategory() {
+        return category;
     }
 
     public int getQuantity() {
@@ -55,6 +63,10 @@ public class Donation implements Comparable<Donation>{
 
     public void setItemDonated(String itemDonated) {
         this.itemDonated = itemDonated;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setQuantity(int quantity) {
