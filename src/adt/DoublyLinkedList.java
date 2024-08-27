@@ -187,6 +187,14 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
         }
         return middleNode;
     }
+    
+        @Override
+    public T search(T value){
+        Node entry;
+        entry = binarySearch(value);
+        return entry.data;
+    }
+    
     private Node binarySearch(T value) {
         Node start = head;
         Node end = null;

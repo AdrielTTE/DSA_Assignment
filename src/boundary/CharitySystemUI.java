@@ -20,7 +20,31 @@ public class CharitySystemUI {
         System.out.println("5. Manage Volunteers");
         System.out.println("0. Exit");
         
-        int choice = numChk(0,5);
+        switch(numChk(0,5)){
+            case 1: 
+                //Insert Donor Management System here
+                break;
+                
+            case 2:
+                //Insert Donee Management System here
+                break;
+                
+            case 3: 
+                //Insert Donations Management here
+                break;
+                
+            case 4: 
+                //Insert Donation Distribution Management here
+                break;
+                
+            case 5: 
+                //Insert Volunteer Management System here
+                break;
+                
+            case 6:
+                break;
+            
+        }
         
         
         

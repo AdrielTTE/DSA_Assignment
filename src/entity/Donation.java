@@ -18,6 +18,7 @@ public class Donation implements Comparable<Donation>{
     public Donation(){
         
     }
+    
     public Donation(Donor donor, String itemDonated, int quantity, double valuePerQuantity) {
         this.donor = donor;
         this.itemDonated = itemDonated;

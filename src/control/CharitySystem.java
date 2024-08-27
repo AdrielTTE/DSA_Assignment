@@ -1,6 +1,7 @@
 
 package control;
 
+import boundary.CharitySystemUI;
 /**
  *
  * @author Adriel
@@ -8,7 +9,7 @@ package control;
 public class CharitySystem {
 
     public static void main(String[] args) {
-        // TODO code application logic here
+        CharitySystemUI.MainMenu();
     }
     
 }
