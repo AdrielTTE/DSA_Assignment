@@ -1,6 +1,7 @@
 package boundary;
 
 import java.util.Scanner;
+
 /**
  *
  * @author Adriel
@@ -30,7 +31,7 @@ public class CharitySystemUI {
                 break;
                 
             case 3: 
-                //Insert Donations Management here
+                DonationManagementUI.
                 break;
                 
             case 4: 
@@ -58,7 +59,7 @@ public class CharitySystemUI {
         while(!cont){
 
         try{
-            System.out.print("/nPlease Enter Choice: ");
+            System.out.print("\nPlease Enter Choice: ");
             choice = input.nextInt();
 
             if (choice >= firstNum && choice <= lastNum){

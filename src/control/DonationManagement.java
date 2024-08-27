@@ -50,11 +50,16 @@ public class DonationManagement {
     }
     
     public void viewDonation(){
-        //ToString method to print out all donations
+        donationList.toString();
     }
     
     public void generateReport(){
-        
+        System.out.println("Generate Report");
+        System.out.println("==================================================");
+        System.out.println("1. Total Valuation of Donations Report");
+        System.out.println("2. Statistical Breakdown of Donated Items Report");
+        System.out.println("3. Donated Items: Sorted by Donor");
+        System.out.println("Please Enter Choice: ");
         //ToString method, written in report format
     }
     

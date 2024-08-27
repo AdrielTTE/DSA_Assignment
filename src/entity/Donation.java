@@ -63,10 +63,8 @@ public class Donation implements Comparable<Donation>{
 
     public void setValuePerQuantity(double valuePerQuantity) {
         this.valuePerQuantity = valuePerQuantity;
-    }
-
-    public void setTotalValue(double totalValue) {
-        this.totalValue = totalValue;
+        
+        
     }
     
     private double calcTotalValue(){
@@ -78,5 +76,15 @@ public class Donation implements Comparable<Donation>{
        
         return o.compareTo(this);
     }
-    
+
+    public void setTotalValue(double totalValue) {
+        this.totalValue = totalValue;
+    }
+   
+
+   
+    @Override
+    public String toString(){
+        return "Name: " + donor + "\nItem Donated: " + itemDonated + "\nQuantity: " + quantity + "\nValue Per Quantity: " + valuePerQuantity + "\nTotal Value: " + totalValue;
+    }
 }

@@ -12,7 +12,7 @@ public class DonationManagementUI {
     
 
 
-    public void donManMenu(){
+    public static void donManMenu(){
         System.out.println("Donation Management");
         System.out.println("==============================");
         System.out.println("1. Add New Donation");
