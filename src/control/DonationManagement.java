@@ -14,16 +14,17 @@ import java.util.Iterator;
  * @author Adriel
  */
 
-//Testing
 public class DonationManagement {
-    
-    private SortedListInterface<Donation> donationList = new DoublyLinkedList<>();
+
+    //Creating relevant objects
     private DonationManagementUI donationManagementUI = new DonationManagementUI();
+    private DonationManagementInitializer donationInitializer = new DonationManagementInitializer();
+    private SortedListInterface<Donation> donationList = donationInitializer.initiateDonations();
     
-    //To add initializers?
     
     public DonationManagement(){
         
+
     }
     
     public void DonationSelection(){
@@ -68,6 +69,7 @@ public class DonationManagement {
     public SortedListInterface<Donation> getDonationList() {
         return donationList;
     }
+    
     
     //For adding a new Donation
     public void addDonation(){

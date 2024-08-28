@@ -12,10 +12,6 @@ import entity.Donation;
  */
 public class DonationManagementInitializer {
 
-    //To remove static?
-    public static DonationManagementUI donationManagementUI = new DonationManagementUI();
-    public static DonationManagement donationManagement = new DonationManagement();
-
     public DonationManagementInitializer() {
 
     }
@@ -23,7 +19,7 @@ public class DonationManagementInitializer {
     public SortedListInterface<Donation> initiateDonations() {
         SortedListInterface<Donation> donationList = new DoublyLinkedList<>();
 
-        //To create Donor here
+        //To create Donor here (At least 15)
         donationList.add(donor, "Cash", "Money", 1, 9000);
         
         return donationList;

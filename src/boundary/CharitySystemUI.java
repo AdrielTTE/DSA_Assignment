@@ -9,8 +9,11 @@ import utility.CheckNumberInput;
  */
 
 public class CharitySystemUI {
-   
-    public static int MainMenu(){
+   public CharitySystemUI(){
+
+   }
+
+    public int MainMenu(){
         System.out.println("Charity Management System");
         System.out.println("===========================\n");
         System.out.println("1. Manage Donors");
