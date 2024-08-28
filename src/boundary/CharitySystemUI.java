@@ -13,7 +13,7 @@ public class CharitySystemUI {
 
    }
 
-    public int MainMenu(){
+    public int mainMenu(){
         System.out.println("Charity Management System");
         System.out.println("===========================\n");
         System.out.println("1. Manage Donors");

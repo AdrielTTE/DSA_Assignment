@@ -13,12 +13,14 @@ import utility.CheckNumberInput;
  */
 public class CharitySystem {
 
+    private CharitySystemUI charitySystemUI = new CharitySystemUI();
+
     public static void main(String[] args) {
         boolean cont = true;
         
         while (cont){
             
-            switch(CharitySystemUI.MainMenu()){
+            switch(charitySystemUI.mainMenu()){
                 case 1: 
                     //Insert Donor Management System here
                     break;
@@ -28,8 +30,8 @@ public class CharitySystem {
                     break;
 
                 case 3:
-                    DonationManagementInitializer donManInitiate = new DonationManagementInitializer();
-                    dao.DonationManagementInitializer.donationManagement.DonationSelection();
+                    DonationManagement donationManagement = new DonationManagement();
+                    donationManagemnt.donationSelection();
                     break;
 
                 case 4: 

@@ -21,18 +21,18 @@ public class DonationManagement {
     private DonationManagementInitializer donationInitializer = new DonationManagementInitializer();
     private SortedListInterface<Donation> donationList = donationInitializer.initiateDonations();
     
-    
+    //Constructor
     public DonationManagement(){
         
-
     }
     
-    public void DonationSelection(){
+    
+    public void donationSelection(){
         boolean cont = true;
         while(cont){
             
         
-        switch(dao.DonationManagementInitializer.donationManagementUI.donManMenu()){
+        switch(donationManagementUI.donManMenu()){
                 case 1: 
                     addDonation();
                     break;
@@ -73,7 +73,7 @@ public class DonationManagement {
     
     //For adding a new Donation
     public void addDonation(){
-        dao.DonationManagementInitializer.donationManagementUI.addNewDonationMenu();
+        donationManagementUI.addNewDonationMenu();
         
     }
     
@@ -90,7 +90,7 @@ public class DonationManagement {
         boolean result = false;
         
         viewDonation();
-        dao.DonationManagementInitializer.donationManagement.searchDonation(input.nextLine());
+        donationManagement.searchDonation(input.nextLine());
         
         //To continue
         if(donationList.remove(donation)){
@@ -119,7 +119,7 @@ public class DonationManagement {
         //Use search
         boolean result = false;
         
-        Donation entry = getDonation(dao.DonationManagementInitializer.donationManagementUI.amendDonationMenu());
+        Donation entry = getDonation(donationManagementUI.amendDonationMenu());
         entry.toString();
         
         
@@ -133,7 +133,7 @@ public class DonationManagement {
     }
     
     public void viewDonation(){
-        dao.DonationManagementInitializer.donationManagementUI.viewDonationMenu();
+        donationManagementUI.viewDonationMenu();
     }
     
     public void displayDonation(){
@@ -141,7 +141,7 @@ public class DonationManagement {
     }
     
     public void generateReport(){
-        switch(dao.DonationManagementInitializer.donationManagementUI.generateReportMenu()){
+        switch(donationManagementUI.generateReportMenu()){
             case 1:
                 //To sort and then to display
                 break;
