@@ -30,7 +30,7 @@ public class CharitySystem {
                     break;
 
                 case 3:
-                    DonationManagement donationManagement = new DonationManagement();
+                    DonationManagement donationManagement = new DonationManagement(donorManagement);
                     donationManagemnt.donationSelection();
                     break;
 

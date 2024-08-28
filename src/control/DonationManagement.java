@@ -27,10 +27,11 @@ public class DonationManagement {
     private DonationManagementUI donationManagementUI = new DonationManagementUI();
     private DonationManagementInitializer donationInitializer = new DonationManagementInitializer();
     private SortedListInterface<Donation> donationList = donationInitializer.initiateDonations();
+    private DonorManagement donorManagement;
     
     //Constructor
-    public DonationManagement(){
-        
+    public DonationManagement(DonorManagement donorManagement){
+        this.donorManagement = donorManagement;
     }
     
 

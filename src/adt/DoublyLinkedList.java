@@ -95,27 +95,47 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
         return true;
     }
     
+
     //Qi Yao's part
+    
     @Override
     public boolean add(T newEntry) {
         Node newNode = new Node(newEntry);
-        
-        Node nodeBefore = null;
-        Node currentNode = head;
-        while(currentNode !=null && newEntry.compareTo(currentNode.data) > 0){
-            nodeBefore = currentNode;
-            currentNode = currentNode.next;
-    }
-        if(isEmpty() || (nodeBefore ==null)) { //
-            newNode.next = currentNode;
-            nodeBefore.next = newNode;
-        }  else{
-            newNode.next = currentNode;
-            nodeBefore.next = newNode;
-        }    
+
+        if (isEmpty()) {
+            // If the list is empty, make the new node the head and tail of the list
+            head = newNode;
+            tail = newNode;
+        } else {
+            Node nodeBefore = null;
+            Node currentNode = head;
+
+            while (currentNode != null && newEntry.compareTo(currentNode.data) > 0) {
+                nodeBefore = currentNode;
+                currentNode = currentNode.next;
+            }
+
+            if (nodeBefore == null) {
+                // Insert at the beginning of the list
+                newNode.next = head;
+                head.previous = newNode;
+                head = newNode;
+            } else if (currentNode == null) {
+                // Insert at the end of the list
+                nodeBefore.next = newNode;
+                newNode.previous = nodeBefore;
+                tail = newNode;
+            } else {
+                // Insert in the middle of the list
+                newNode.next = currentNode;
+                newNode.previous = nodeBefore;
+                nodeBefore.next = newNode;
+                currentNode.previous = newNode;
+            }
+        }
+
         numOfEntries++;
         return true;
-
     }
 
     //Cher Wei's Part
