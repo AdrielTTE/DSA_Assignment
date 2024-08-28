@@ -20,6 +20,7 @@ public interface SortedListInterface<T extends Comparable<T>>{
 
   public boolean isEmpty();
   
+  //To change to sortData
   public boolean sort(Comparator<T> comparator);//method refers to how the user wishes to sort the list
   
   public T search(T entry);

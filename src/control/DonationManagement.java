@@ -18,6 +18,9 @@ import java.util.Iterator;
 public class DonationManagement {
     
     private SortedListInterface<Donation> donationList = new DoublyLinkedList<>();
+    private DonationManagementUI donationManagementUI = new DonationManagementUI();
+    
+    //To add initializers?
     
     public DonationManagement(){
         
@@ -46,7 +49,7 @@ public class DonationManagement {
                     break;
 
                 case 5:
-                    viewDonationMenu();
+                    viewDonation();
                     break;
 
                 case 6: 
@@ -83,6 +86,8 @@ public class DonationManagement {
     //For removing a Donation
     public boolean removeDonation(){
         boolean result = false;
+        
+        viewDonation();
         dao.DonationManagementInitializer.donationManagement.searchDonation(input.nextLine());
         
         //To continue
@@ -112,12 +117,24 @@ public class DonationManagement {
         //Use search
         boolean result = false;
         
+        Donation entry = getDonation(dao.DonationManagementInitializer.donationManagementUI.amendDonationMenu());
+        entry.toString();
+        
         
         return result;
         
     }
     
+    public Donation getDonation(int position){
+        
+        return donationList.getEntry(position);
+    }
+    
     public void viewDonation(){
+        dao.DonationManagementInitializer.donationManagementUI.viewDonationMenu();
+    }
+    
+    public void displayDonation(){
         donationList.toString();
     }
     

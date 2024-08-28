@@ -126,19 +126,36 @@ public class DonationManagementUI {
         
     }
 
-    private void searchDonationMenu(){
+    public void searchDonationMenu(){
         System.out.println("Enter Donated Item Namte: ");
         String searchItem = input.nextLine();
         dao.DonationManagementInitializer.donationManagement.searchDonation(donationName);
         
     }
 
-    private void amendDonationMenu(){
-
+    public int amendDonationMenu(){
+        System.out.println("Amend Donation");
+        System.out.println("========================");
+        dao.DonationManagementInitializer.donationManagement.viewDonation();
+        System.out.println("Select Donation to Amend");
+        
+        //To change constraints
+        return CheckNumberInput.numChk(1, dao.DonationManagementInitializer.donationManagement.getDonationList().getNumOfEntries());
+        
+    }
+    
+    public int itemToAmend(){
+        System.out.println("1. Donor");
+        System.out.println("2. Donated Item Name");
+        System.out.println("3. Category");
+        System.out.println("4. Quantity of Item");
+        System.out.println("5. Value Per Item");
+        
+        return CheckNumberInput.numChk(0, 5);
     }
 
-    private static void viewDonationMenu(){
-
+    public void viewDonationMenu(){
+        dao.DonationManagementInitializer.donationManagement.displayDonation();
     }
 
     public int generateReportMenu(){

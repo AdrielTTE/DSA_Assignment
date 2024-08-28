@@ -4,6 +4,7 @@ package control;
 import boundary.CharitySystemUI;
 import boundary.DonationManagementUI;
 import control.DonationManagement;
+import dao.DonationManagementInitializer;
 import utility.CheckNumberInput;
 
 /**
@@ -26,7 +27,8 @@ public class CharitySystem {
                     //Insert Donee Management System here
                     break;
 
-                case 3: 
+                case 3:
+                    DonationManagementInitializer donManInitiate = new DonationManagementInitializer();
                     dao.DonationManagementInitializer.donationManagement.DonationSelection();
                     break;
 
