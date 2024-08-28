@@ -20,7 +20,7 @@ import dao.DonationManagementInitializer;
 import java.util.Iterator;
 
 
-
+// Pass object as parameter to access from different classes
 public class DonationManagement {
 
     //Creating relevant objects
