@@ -24,16 +24,20 @@ import java.util.Iterator;
 public class DonationManagement {
 
     //Creating relevant objects
-    private DonationManagementUI donationManagementUI = new DonationManagementUI();
+    private DonationManagementUI donationManagementUI;
     private DonationManagementInitializer donationInitializer = new DonationManagementInitializer();
     private SortedListInterface<Donation> donationList = donationInitializer.initiateDonations();
     private DonorManagement donorManagement;
     
     //Constructor
-    public DonationManagement(DonorManagement donorManagement){
-        this.donorManagement = donorManagement;
+    public DonationManagement(){
+        this.donationManagementUI = new DonationManagementUI(this);
     }
+ 
     
+    public DonationManagement getDonationManagement(DonationManagement donationManagement){
+        return donationManagement;
+    }
 
     public void donationSelection(){
         boolean cont = true;
@@ -101,27 +105,28 @@ public class DonationManagement {
         
         
         //To continue
-        if(donationList.remove(donationList.getEntry(donationManagement.searchDonation(donationManagementUI.removeDonationMenu())))){
+        if(donationList.remove(donationList.getEntry(searchDonation(donationManagementUI.removeDonationMenu())))){
             
             result = true;
-            donationManagementUI.removedDonations(result);
+            donationManagementUI.removedDonation(result);
         }
         
         return result;
     }
     
     //To implement using iterator?
-    public Donation searchDonation(int position){
-        for (Donation donation : donationList) {
-    if (donation.getItemDonated().equalsIgnoreCase("SpecificItem")) {
-        Donor donor = donation.getDonor();
-        System.out.println("Donor Name: " + donor.getName());
-        break; // If you only want the first match
+    public boolean searchDonation(){
+        Donation searchItem = new Donation();
+        searchItem.setItemDonated(donationManagementUI.searchDonationMenu());
+        int count=1;
+        while(count <= donationList.getNumOfEntries()){
+            donationManagementUI.displaySearchedDonations(donationList.search(searchItem));
+        }
+
+        return true;
     }
-}
-        return donationList.search(donationList.getEntry(Integer.MIN_VALUE));
+
         
-    }
     
     public boolean amendDonation(Donation donationName){
         
@@ -171,3 +176,4 @@ public class DonationManagement {
 // Top 5 donated Items (To implement into implementation class)
  //To add toString + numerated   
 }
+

@@ -13,9 +13,11 @@ import utility.CheckNumberInput;
  */
 public class CharitySystem {
 
-    private CharitySystemUI charitySystemUI = new CharitySystemUI();
+    
+    private static CharitySystemUI charitySystemUI = new CharitySystemUI();
 
     public static void main(String[] args) {
+        
         boolean cont = true;
         
         while (cont){
@@ -30,8 +32,8 @@ public class CharitySystem {
                     break;
 
                 case 3:
-                    DonationManagement donationManagement = new DonationManagement(donorManagement);
-                    donationManagemnt.donationSelection();
+                    DonationManagement donationManagement = new DonationManagement();
+                    donationManagement.donationSelection();
                     break;
 
                 case 4: 

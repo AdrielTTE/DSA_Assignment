@@ -27,6 +27,9 @@ public class Donor implements Comparable<Donor> {
         this.donorDateDonated = donorDateDonated;
     }
 
+    public Donor(){
+        
+    }
     // Getters and Setters
     public String getDonorName() {
         return donorName;

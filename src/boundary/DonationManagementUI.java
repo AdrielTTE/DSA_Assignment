@@ -6,14 +6,20 @@ import boundary.CharitySystemUI;
 import utility.CheckNumberInput;
 import control.CharitySystem;
 import entity.Donation;
+import entity.Donor;
 
 public class DonationManagementUI {
-
+    private DonationManagement donationManagement;
     Scanner input = new Scanner(System.in);
     public DonationManagementUI(){
         
     }
-
+    
+    public DonationManagementUI(DonationManagement donationManagement) {
+        this.donationManagement = donationManagement;
+    }
+    
+    
     public int donManMenu(){
         System.out.println("Donation Management");
         System.out.println("==============================");
@@ -38,10 +44,20 @@ public class DonationManagementUI {
         int quantity;
         double valuePerItem;
         String category;
+        Donor donor = new Donor();
         
         //To create Donor
         System.out.print("Enter Donor Name: ");
         String name = input.nextLine();
+        donor.setDonorName(name); 
+                
+        donor.setDonorType(chooseDonorType());
+
+        System.out.print("Enter " + name + "'s IC: ");
+        donor.setDonorIC(input.nextInt());
+        
+        System.out.print("Enter " + name + "'s Phone Number: ");
+        donor.setDonorPhone(input.nextInt());
         
         //To loop, how many items to add?
         System.out.print("Enter Number of Item(s) Donated: ");
@@ -65,9 +81,34 @@ public class DonationManagementUI {
        System.out.println("Donation successfully added!\n");
        donationManagement.getDonationList().toString();
     }
+    
+    private String chooseDonorType(){
+        String result = "";
+        System.out.println("Select Donor Type");
+        System.out.println("1. Government");
+        System.out.println("2. Private");
+        System.out.println("3. Public");
+        
+        switch(CheckNumberInput.numChk(1, 3)){
+            
+            case 1:
+                result = "Government";
+                break;
+            
+            case 2:
+                result = "Private";
+                break;
+                
+            default:
+                result = "Public";
+                break;
+        }
+        
+        return result;
+    }
 
     private String chooseCategories(){
-        String result = "null";
+        String result = "";
         System.out.println("\nSelect Category");
         System.out.println("1. Money");
         System.out.println("2. Clothes");
@@ -120,7 +161,7 @@ public class DonationManagementUI {
     //For removing Donation
     public int removeDonationMenu(){
         
-        System.out.println("Select Donation to Remove (1-" + donationManagement.getDonation().getNumOfEnties() + ")");
+        System.out.println("Select Donation to Remove (1-" + donationManagement.getDonationList().getNumOfEntries() + ")");
         return CheckNumberInput.numChk(1,donationManagement.getDonationList().getNumOfEntries());
 
     }
@@ -134,11 +175,15 @@ public class DonationManagementUI {
     }   
 
 
-    public void searchDonationMenu(){
+    public String searchDonationMenu(){
         System.out.println("Enter Donated Item Name: ");
-        String searchItem = input.nextLine();
-        donationManagement.getDonationList().searchDonation(donationName);
+        return input.nextLine();
+       
         
+    }
+    
+    public void displaySearchedDonations(Donation searchedDonation){
+        System.out.println(searchedDonation);
     }
 
     public int amendDonationMenu(){
