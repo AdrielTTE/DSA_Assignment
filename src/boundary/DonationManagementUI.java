@@ -59,11 +59,11 @@ public class DonationManagementUI {
             System.out.print("Enter Value Per Item: RM");
             valuePerItem = numFltInput();
                                                                                 //To get Donor class
-            dao.DonationManagementInitializer.donationManagement.addNewDonation(donor, itemName, category, quantity, valuePerItem);
+            donationManagement.addNewDonation(donor, itemName, category, quantity, valuePerItem);
         }
         
-       System.out.println("Donation successfully added!");
-       dao.DonationManagementInitializer.donationManagement.getDonationList().toString();
+       System.out.println("Donation successfully added!\n");
+       donationManagement.getDonationList().toString();
     }
 
     private String chooseCategories(){
@@ -118,10 +118,10 @@ public class DonationManagementUI {
 
 
     //For removing Donation
-    private int removeDonationMenu(){
+    public int removeDonationMenu(){
         
         System.out.println("Select Donation to Remove (1-" + donationManagement.getDonation().getNumOfEnties() + ")");
-        return CheckNumberInput.numChk(1,donationManagement.getDonation().getNumOfEntries());
+        return CheckNumberInput.numChk(1,donationManagement.getDonationList().getNumOfEntries());
 
     }
 
@@ -132,23 +132,23 @@ public class DonationManagementUI {
         else
             System.out.println("Error: Donation has not been removed!");
     }   
-    
+
 
     public void searchDonationMenu(){
         System.out.println("Enter Donated Item Name: ");
         String searchItem = input.nextLine();
-        dao.DonationManagementInitializer.donationManagement.searchDonation(donationName);
+        donationManagement.getDonationList().searchDonation(donationName);
         
     }
 
     public int amendDonationMenu(){
         System.out.println("Amend Donation");
         System.out.println("========================");
-        dao.DonationManagementInitializer.donationManagement.viewDonation();
+        donationManagement.viewDonation();
         System.out.println("Select Donation to Amend");
         
         //To change constraints
-        return CheckNumberInput.numChk(1, dao.DonationManagementInitializer.donationManagement.getDonationList().getNumOfEntries());
+        return CheckNumberInput.numChk(1, donationManagement.getDonationList().getNumOfEntries());
         
     }
     
@@ -168,7 +168,7 @@ public class DonationManagementUI {
 
     public int generateReportMenu(){
         System.out.println("Generate Report");
-        System.out.println("==================================================");
+        System.out.println("==================================================\n");
         System.out.println("1. Total Valuation of Donations Report");
         System.out.println("2. Categorical Breakdown of Donated Items Report");
         System.out.println("3. Donated Items: Sorted by Donor");
