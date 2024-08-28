@@ -115,11 +115,15 @@ public class DonationManagementUI {
         System.out.println("==============================\n");
 
     }
+
+
+    //For removing Donation
     private int removeDonationMenu(){
         
         System.out.println("Select Donation to Remove (1-" + donationManagement.getDonation().getNumOfEnties() + ")");
         return CheckNumberInput.numChk(1,donationManagement.getDonation().getNumOfEntries());
 
+    }
 
     public void removedDonation(boolean removedStatus){
         if (removedStatus)
@@ -128,9 +132,10 @@ public class DonationManagementUI {
         else
             System.out.println("Error: Donation has not been removed!");
     }   
+    
 
     public void searchDonationMenu(){
-        System.out.println("Enter Donated Item Namte: ");
+        System.out.println("Enter Donated Item Name: ");
         String searchItem = input.nextLine();
         dao.DonationManagementInitializer.donationManagement.searchDonation(donationName);
         

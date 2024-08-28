@@ -1,19 +1,25 @@
 
 package control;
 
-import entity.Donation;
-import adt.DoublyLinkedList;
-import adt.SortedListInterface;
-import boundary.CharitySystemUI;
-import boundary.DonationManagementUI;
-import dao.DonationManagementInitializer;
-
-
-import java.util.Iterator;
 /**
  *
  * @author Adriel
  */
+
+import entity.Donation;
+import entity.Donor;
+
+import adt.DoublyLinkedList;
+import adt.SortedListInterface;
+
+import boundary.CharitySystemUI;
+import boundary.DonationManagementUI;
+
+import dao.DonationManagementInitializer;
+
+import java.util.Iterator;
+
+
 
 public class DonationManagement {
 
@@ -161,5 +167,6 @@ public class DonationManagement {
         }
         //ToString method, written in report format
     }
-    
+
+ //To add toString + numerated   
 }
