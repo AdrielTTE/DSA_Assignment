@@ -6,6 +6,7 @@ import adt.DoublyLinkedList;
 import adt.SortedListInterface;
 import boundary.CharitySystemUI;
 import boundary.DonationManagementUI;
+import dao.DonationManagementInitializer;
 
 
 import java.util.Iterator;
@@ -26,7 +27,7 @@ public class DonationManagement {
         
     }
     
-    
+
     public void donationSelection(){
         boolean cont = true;
         while(cont){
@@ -88,21 +89,22 @@ public class DonationManagement {
     //For removing a Donation
     public boolean removeDonation(){
         boolean result = false;
-        
+        donationManagementUI.viewDonationTitle();
         viewDonation();
-        donationManagement.searchDonation(input.nextLine());
+        
         
         //To continue
-        if(donationList.remove(donation)){
+        if(donationList.remove(donationList.getEntry(donationManagement.searchDonation(donationManagementUI.removeDonationMenu())))){
             
             result = true;
+            donationManagementUI.removedDonations(result);
         }
         
         return result;
     }
     
     //To implement using iterator?
-    public Donation searchDonation(String item){
+    public Donation searchDonation(int position){
         for (Donation donation : donationList) {
     if (donation.getItemDonated().equalsIgnoreCase("SpecificItem")) {
         Donor donor = donation.getDonor();

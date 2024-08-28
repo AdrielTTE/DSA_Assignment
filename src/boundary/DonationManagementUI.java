@@ -110,21 +110,24 @@ public class DonationManagementUI {
         return result;
     }
     
-    private void removeDonationMenu(){
-        //To change the wording
-        
+    public void viewDonationTitle(){
         System.out.println("Donations");
-        System.out.println("==============================");
-        dao.DonationManagementInitializer.donationManagement.viewDonation();
-        
-        System.out.print("Enter donation to remove: ");
-        String itemToRemove = input.nextLine();
-        
-        //To implement iterators, this is part of the search function as well
-        
-        
-        
+        System.out.println("==============================\n");
+
     }
+    private int removeDonationMenu(){
+        
+        System.out.println("Select Donation to Remove (1-" + donationManagement.getDonation().getNumOfEnties() + ")");
+        return CheckNumberInput.numChk(1,donationManagement.getDonation().getNumOfEntries());
+
+
+    public void removedDonation(boolean removedStatus){
+        if (removedStatus)
+            System.out.println("Donation has been removed!");
+        
+        else
+            System.out.println("Error: Donation has not been removed!");
+    }   
 
     public void searchDonationMenu(){
         System.out.println("Enter Donated Item Namte: ");
