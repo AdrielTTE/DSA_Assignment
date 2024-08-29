@@ -17,7 +17,10 @@ public class Donation implements Comparable<Donation>{
     //Constructor
     
     public Donation(){
-        
+        this.itemDonated = "";
+        this.category = "";
+        this.quantity = 0;
+        this.valuePerQuantity = 0;
     }
     
     public Donation(Donor donor, String itemDonated, String category, int quantity, double valuePerQuantity) {
@@ -86,8 +89,9 @@ public class Donation implements Comparable<Donation>{
     @Override
     public int compareTo(Donation o) {
        
-        return o.compareTo(this);
+        return o.getCategory().compareTo(this.getCategory());
     }
+    
 
     public void setTotalValue(double totalValue) {
         this.totalValue = totalValue;
@@ -97,6 +101,6 @@ public class Donation implements Comparable<Donation>{
    
     @Override
     public String toString(){
-        return "Name: " + donor + "\nItem Donated: " + itemDonated + "\nQuantity: " + quantity + "\nValue Per Quantity: " + valuePerQuantity + "\nTotal Value: " + totalValue;
+        return String.format("| %-22s | %-10s | %-15s | %-15s |  %-14s | %-19s | %-15s |", donor.getDonorName(), donor.getDonorType(), itemDonated, category,quantity, valuePerQuantity, totalValue);
     }
 }

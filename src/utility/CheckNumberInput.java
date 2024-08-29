@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package utility;
 
 import java.util.Scanner;
@@ -14,6 +11,7 @@ public class CheckNumberInput {
     static Scanner input = new Scanner(System.in);
 
     public static int numChk(int firstNum, int lastNum) {
+        
         int choice = -1;
         boolean cont = false;
 
@@ -22,6 +20,7 @@ public class CheckNumberInput {
             try {
                 System.out.print("\nPlease Enter Choice: ");
                 choice = input.nextInt();
+                input.nextLine();
 
                 if (choice >= firstNum && choice <= lastNum) {
                     cont = true;

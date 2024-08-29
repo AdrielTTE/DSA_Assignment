@@ -1,5 +1,6 @@
 package boundary;
 
+import adt.SortedListInterface;
 import java.util.Scanner;
 import control.DonationManagement;
 import boundary.CharitySystemUI;
@@ -7,6 +8,7 @@ import utility.CheckNumberInput;
 import control.CharitySystem;
 import entity.Donation;
 import entity.Donor;
+import utility.MessageUI;
 
 public class DonationManagementUI {
     private DonationManagement donationManagement;
@@ -21,8 +23,8 @@ public class DonationManagementUI {
     
     
     public int donManMenu(){
-        System.out.println("Donation Management");
-        System.out.println("==============================");
+        System.out.println("\nDonation Management");
+        System.out.println("==============================\n");
         System.out.println("1. Add New Donation");
         System.out.println("2. Remove Existing Donation");
         System.out.println("3. Search Donation Details");
@@ -54,32 +56,33 @@ public class DonationManagementUI {
         donor.setDonorType(chooseDonorType());
 
         System.out.print("Enter " + name + "'s IC: ");
-        donor.setDonorIC(input.nextInt());
+        donor.setDonorIC(input.nextLine());
         
         System.out.print("Enter " + name + "'s Phone Number: ");
-        donor.setDonorPhone(input.nextInt());
+        donor.setDonorPhone(input.nextLine());
         
         //To loop, how many items to add?
         System.out.print("Enter Number of Item(s) Donated: ");
         int quantityOfItems = quantityChk();
 
         for (int i = 1; i <= quantityOfItems; i++){
-            System.out.print("Enter Item Name " + i + " : ");
+            System.out.print("Enter Item Name " + i + ": ");
             itemName = input.nextLine();
-            
+            donor.setDonorDonated(itemName);
             category = chooseCategories();
             
-            System.out.print("Enter Quantity of Item:  " + i + " : ");
+            System.out.print("Enter Quantity of Item " + i + " : ");
             quantity = quantityChk();
             
             System.out.print("Enter Value Per Item: RM");
             valuePerItem = numFltInput();
-                                                                                //To get Donor class
+                                                                                
             donationManagement.addNewDonation(donor, itemName, category, quantity, valuePerItem);
+            donor.setDonorDateDonated("31/8/2024");
         }
         
        System.out.println("Donation successfully added!\n");
-       donationManagement.getDonationList().toString();
+       System.out.println(donationManagement.getDonationList().toString());
     }
     
     private String chooseDonorType(){
@@ -107,7 +110,7 @@ public class DonationManagementUI {
         return result;
     }
 
-    private String chooseCategories(){
+    public String chooseCategories(){
         String result = "";
         System.out.println("\nSelect Category");
         System.out.println("1. Money");
@@ -150,17 +153,13 @@ public class DonationManagementUI {
         
         return result;
     }
-    
-    public void viewDonationTitle(){
-        System.out.println("Donations");
-        System.out.println("==============================\n");
-
-    }
 
 
     //For removing Donation
     public int removeDonationMenu(){
-        
+        System.out.println("\nDonations");
+        System.out.println("==============================\n");
+        donationManagement.displayDonation();
         System.out.println("Select Donation to Remove (1-" + donationManagement.getDonationList().getNumOfEntries() + ")");
         return CheckNumberInput.numChk(1,donationManagement.getDonationList().getNumOfEntries());
 
@@ -178,18 +177,79 @@ public class DonationManagementUI {
     public String searchDonationMenu(){
         System.out.println("Enter Donated Item Name: ");
         return input.nextLine();
-       
         
     }
     
-    public void displaySearchedDonations(Donation searchedDonation){
-        System.out.println(searchedDonation);
+   
+    
+    public void displaySearchedDonations(SortedListInterface<Donation> searchedDonationList){
+        System.out.println(searchedDonationList.toString());
     }
+    
+    public void displaySelectedDonation(Donation selected){
+        System.out.println(selected.toString());
+    }
+    
+    //Amending Donations
+    public int attributeToChange(Donation selected){
+        displaySelectedDonation(selected);
+        
+        System.out.println("\nSelect Attribute to Change");
+        System.out.println("==================================\n");
+        System.out.println("1. Donor Name: " + selected.getDonor());
+        System.out.println("2. Item Donated: " + selected.getItemDonated());
+        System.out.println("3. Category: " + selected.getCategory());
+        System.out.println("4. Quantity: " + selected.getQuantity());
+        System.out.println("5. Value Per Quantity: " + selected.getValuePerQuantity());
+        System.out.println("6. Total Value: " + selected.getTotalValue());
+        return CheckNumberInput.numChk(1, 6);
+        
+    }
+    
+    public Donor changeDonor(){
+        Donor donor = new Donor();
+        String itemName;
+        int quantity;
+        double valuePerItem;
+        String category;
+        
+        //To create Donor
+        System.out.print("Enter Donor Name: ");
+        String name = input.nextLine();
+        donor.setDonorName(name); 
+                
+        donor.setDonorType(chooseDonorType());
 
+        System.out.print("Enter " + name + "'s IC: ");
+        donor.setDonorIC(input.nextLine());
+        
+        System.out.print("Enter " + name + "'s Phone Number: ");
+        donor.setDonorPhone(input.nextLine());
+        
+        return donor;
+    }
+    
+    public String changeDonatedItem(){
+        System.out.print("Enter Donated Item: ");
+        return input.nextLine();
+        
+    }
+    
+    public int changeQuantity(){
+        System.out.print("Enter Quantity of Donated Item: ");
+        return input.nextInt();
+    }
+    
+    public double changeValuePerItem(){
+        System.out.print("Enter Value Per Donated Item: ");
+        return input.nextDouble();
+    }
+    
+    
     public int amendDonationMenu(){
-        System.out.println("Amend Donation");
+        System.out.println("\nAmend Donation");
         System.out.println("========================");
-        donationManagement.viewDonation();
+        donationManagement.displayDonation();
         System.out.println("Select Donation to Amend");
         
         //To change constraints
@@ -206,13 +266,57 @@ public class DonationManagementUI {
         
         return CheckNumberInput.numChk(0, 5);
     }
-
-    public void viewDonationMenu(){
-        dao.DonationManagementInitializer.donationManagement.displayDonation();
+    
+    public void displayChangedDonation(Donation amendDonation){
+        System.out.println(amendDonation.toString());
     }
 
+    public void viewDonationMenu(){
+        donationManagement.displayDonation();
+    }
+    
+    public int displayListMenu(SortedListInterface<Donation> donationList){
+        MessageUI.displayDonationListHeader();
+        System.out.println(donationList.toString());
+        MessageUI.displayDonationListFooter();
+        System.out.println("\n1. Filter");
+        System.out.println("0. Back");
+        return CheckNumberInput.numChk(0, 1);
+        
+    }
+    
+    public int filterBy(){
+        
+        System.out.println("\nFilter");
+        System.out.println("=========================\n");
+        System.out.println("1. Donor");
+        System.out.println("2. Donated Item Name");
+        System.out.println("3. Category");
+        
+        return CheckNumberInput.numChk(1, 3);
+    }
+
+    public int getDonorAttribute(){
+        System.out.println("\nDonor Attributes");
+        System.out.println("=========================\n");
+        System.out.println("1. Name");
+        System.out.println("2. Donor Type");
+    
+        return CheckNumberInput.numChk(1, 2);
+    }
+    
+    public String getDonorName(){
+        System.out.print("Enter Donor Name: ");
+        return input.nextLine();
+    }
+    
+    public String getDonorType(){
+        System.out.print("Enter Donor Type: ");
+        return input.nextLine();
+    }
+    
     public int generateReportMenu(){
-        System.out.println("Generate Report");
+        System.out.println("\nGenerate Report");
         System.out.println("==================================================\n");
         System.out.println("1. Total Valuation of Donations Report");
         System.out.println("2. Categorical Breakdown of Donated Items Report");
@@ -226,8 +330,7 @@ public class DonationManagementUI {
     
     //Utility to limit the amount that a donor can sponsor (Cannot be infinity)
     private int quantityChk(){
-        int quantity;
-        int choice = -1;
+        int quantity=0;
         boolean cont = false;
         int minimum = 1;
         int maximum = 10000;
@@ -235,6 +338,7 @@ public class DonationManagementUI {
 
         try{
             quantity = input.nextInt();
+            input.nextLine();
 
             if (quantity >= minimum && quantity <= maximum){
                 cont = true;
@@ -255,7 +359,7 @@ public class DonationManagementUI {
         }
         
     }
-    return choice;
+    return quantity;
 
     }
 
@@ -267,7 +371,7 @@ public class DonationManagementUI {
             number = 1.0;
             try {
                 number = input.nextDouble();
-
+                input.nextLine();
                 if (number > 0) {
                     cont = true;
                 } else {

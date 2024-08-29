@@ -12,12 +12,9 @@ import entity.Donor;
 import adt.DoublyLinkedList;
 import adt.SortedListInterface;
 
-import boundary.CharitySystemUI;
 import boundary.DonationManagementUI;
 
 import dao.DonationManagementInitializer;
-
-import java.util.Iterator;
 
 
 // Pass object as parameter to access from different classes
@@ -27,7 +24,7 @@ public class DonationManagement {
     private DonationManagementUI donationManagementUI;
     private DonationManagementInitializer donationInitializer = new DonationManagementInitializer();
     private SortedListInterface<Donation> donationList = donationInitializer.initiateDonations();
-    private DonorManagement donorManagement;
+    //private DonorManagement donorManagement;
     
     //Constructor
     public DonationManagement(){
@@ -58,15 +55,15 @@ public class DonationManagement {
                     break;
 
                 case 4:
-                    amendDonationMenu();
+                    amendDonation();
                     break;
 
                 case 5:
-                    viewDonation();
+                    displayDonation();
                     break;
 
                 case 6: 
-                    generateReportMenu();
+                    generateReport();
                     break;
 
                 default:
@@ -100,12 +97,8 @@ public class DonationManagement {
     //For removing a Donation
     public boolean removeDonation(){
         boolean result = false;
-        donationManagementUI.viewDonationTitle();
-        viewDonation();
-        
-        
-        //To continue
-        if(donationList.remove(donationList.getEntry(searchDonation(donationManagementUI.removeDonationMenu())))){
+     
+        if(donationList.remove(donationList.getEntry(donationManagementUI.removeDonationMenu()))){
             
             result = true;
             donationManagementUI.removedDonation(result);
@@ -113,46 +106,153 @@ public class DonationManagement {
         
         return result;
     }
-    
-    //To implement using iterator?
-    public boolean searchDonation(){
+   
+    public SortedListInterface<Donation> searchDonation(){
+        SortedListInterface<Donation> searchedDonationList = new DoublyLinkedList<>();
         Donation searchItem = new Donation();
         searchItem.setItemDonated(donationManagementUI.searchDonationMenu());
         int count=1;
         while(count <= donationList.getNumOfEntries()){
-            donationManagementUI.displaySearchedDonations(donationList.search(searchItem));
+            searchedDonationList.add(donationList.search(searchItem));
+            count++;
         }
-
-        return true;
+       
+        return searchedDonationList;
     }
-
         
     
-    public boolean amendDonation(Donation donationName){
+    public void amendDonation(){
         
         //Use search
         boolean result = false;
+        Donation amendDonation = new Donation();
+        amendDonation = getDonation(donationManagementUI.amendDonationMenu());
         
-        Donation entry = getDonation(donationManagementUI.amendDonationMenu());
-        entry.toString();
+        switch(donationManagementUI.attributeToChange(amendDonation)){
+            case 1: 
+                amendDonation.setDonor(donationManagementUI.changeDonor());
+                break;
+                
+            case 2:
+                amendDonation.setItemDonated(donationManagementUI.changeDonatedItem());
+                break;
+               
+            case 3:
+                amendDonation.setCategory(donationManagementUI.chooseCategories());
+                
+            case 4:
+                amendDonation.setQuantity(donationManagementUI.changeQuantity());
+                break;
+                
+            default: 
+                amendDonation.setValuePerQuantity(donationManagementUI.changeValuePerItem());
+                break;
+            
+        }
         
-        
-        return result;
+        donationManagementUI.displayChangedDonation(amendDonation);
         
     }
     
     public Donation getDonation(int position){
-        
         return donationList.getEntry(position);
     }
     
-    public void viewDonation(){
-        donationManagementUI.viewDonationMenu();
+    public void displayDonation(){
+        
+        switch(donationManagementUI.displayListMenu(donationList)){
+            case 1:
+                filter();
+                break;
+            
+            default:
+                //To add logic
+                break;
+                
+            
+        }
+        
+        
+    }
+   
+   
+    
+    public void filter(){
+        switch(donationManagementUI.filterBy()){
+            case 1:
+                filterDonor();
+                break;
+                
+            case 2:
+                searchDonation();
+                break;
+                
+            case 3:
+                filterByCategory();
+                break;
+        }
     }
     
-    public void displayDonation(){
-        donationList.toString();
+    
+    public SortedListInterface<Donation> filterByCategory(){
+        SortedListInterface<Donation> searchedDonationList = new DoublyLinkedList<>();
+        Donation searchItem = new Donation();
+        searchItem.setCategory(donationManagementUI.chooseCategories());
+        
+        int count=1;
+        while(count <= donationList.getNumOfEntries()){
+            searchedDonationList.add(donationList.search(searchItem));
+            count++;
+        }
+       
+        return searchedDonationList;
     }
+    
+    public void filterDonor(){
+        switch(donationManagementUI.getDonorAttribute()){
+            case 1: 
+                filterByDonorName();
+                break;
+                
+            default:
+                filterByDonorType();
+                break;
+                
+        }
+    }
+    
+    
+    public SortedListInterface<Donation> filterByDonorName(){
+        SortedListInterface<Donation> searchedDonationList = new DoublyLinkedList<>();
+        Donation searchItem = new Donation();
+        Donor searchItemDonor = new Donor("","","","","","");
+        searchItemDonor.setDonorName(donationManagementUI.getDonorName());
+        searchItem.setDonor(searchItemDonor);
+        
+        int count=1;
+        while(count <= donationList.getNumOfEntries()){
+            searchedDonationList.add(donationList.search(searchItem));
+            count++;
+        }
+       
+        return searchedDonationList;
+    }
+    
+    public SortedListInterface<Donation> filterByDonorType(){
+        SortedListInterface<Donation> searchedDonationList = new DoublyLinkedList<>();
+        Donation searchItem = new Donation();
+        searchItem.getDonor().setDonorType(donationManagementUI.getDonorType());
+        
+        int count=1;
+        while(count <= donationList.getNumOfEntries()){
+            searchedDonationList.add(donationList.search(searchItem));
+            count++;
+        }
+       
+        return searchedDonationList;
+    }
+    
+    
     
     public void generateReport(){
         switch(donationManagementUI.generateReportMenu()){
@@ -173,6 +273,8 @@ public class DonationManagement {
         }
         //ToString method, written in report format
     }
+    
+    
 // Top 5 donated Items (To implement into implementation class)
  //To add toString + numerated   
 }

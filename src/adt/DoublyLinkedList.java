@@ -193,36 +193,53 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
          return numOfEntries;
 
     }
+    
+    @Override
+    public String toString() {
+    StringBuilder result = new StringBuilder();
+    Node current = head;
 
+    while (current != null) {
+        result.append(current.data);
+        if (current.next != null) {
+            result.append("\n\n");
+        }
+        current = current.next;
+    }
+
+    return result.toString();
+}
+    
     
   
    
-    private Node findMiddle(){
-        Node middleNode= head;
-        Integer halfOfNum = getNumOfEntries()/2;
-        Integer count = 0;
-        while (count < halfOfNum){
-            middleNode = middleNode.next;
-            
+private Node findMiddle(Node start, Node end) {
+        Node slow = start;
+        Node fast = start;
+
+        while (fast != end && fast.next != end) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        return middleNode;
+        return slow;
     }
-    
-        @Override
-    public T search(T value){
-        Node entry;
-        entry = binarySearch(value);
-        return entry.data;
+
+    @Override
+    public T search(T value) {
+        Node entry = binarySearch(value);
+        return (entry != null) ? entry.data : null;
     }
-    
+
     private Node binarySearch(T value) {
         Node start = head;
         Node end = null;
 
         while (start != end) {
-            Node middle = findMiddle();
+            Node middle = findMiddle(start, end);  // Updated findMiddle method to take start and end
 
-            if (middle == null) return null;
+            if (middle == null) {
+                return null;
+            }
 
             int comparison = middle.data.compareTo(value);
 
@@ -236,7 +253,7 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
         }
 
         return null;
-    }
+}
 
     
     private class Node {

@@ -14,7 +14,7 @@ public class CharitySystemUI {
    }
 
     public int mainMenu(){
-        System.out.println("Charity Management System");
+        System.out.println("\nCharity Management System");
         System.out.println("===========================\n");
         System.out.println("1. Manage Donors");
         System.out.println("2. Manage Donees");

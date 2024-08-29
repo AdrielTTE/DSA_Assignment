@@ -4,21 +4,25 @@ package entity;
  *
  * @author Amanda Lee
  */
-
 public class Donor implements Comparable<Donor> {
+
     private String donorName;
     private String donorType;
-    private int donorIC;
-    private int donorPhone;
-    private double donorDonated;
-    private String donorDateDonated;  
+    private String donorIC;
+    private String donorPhone;
+    private String donorDonated;
+    private String donorDateDonated;
 
     // Constructor 
+    public Donor() {
+
+    }
+
     public Donor(String donorName) {
         this.donorName = donorName;
     }
 
-    public Donor(String donorName, String donorType, int donorIC, int donorPhone, double donorDonated, String donorDateDonated) {
+    public Donor(String donorName, String donorType, String donorIC, String donorPhone, String donorDonated, String donorDateDonated) {
         this.donorName = donorName;
         this.donorType = donorType;
         this.donorIC = donorIC;
@@ -27,9 +31,6 @@ public class Donor implements Comparable<Donor> {
         this.donorDateDonated = donorDateDonated;
     }
 
-    public Donor(){
-        
-    }
     // Getters and Setters
     public String getDonorName() {
         return donorName;
@@ -47,27 +48,27 @@ public class Donor implements Comparable<Donor> {
         this.donorType = donorType;
     }
 
-    public int getDonorIC() {
+    public String getDonorIC() {
         return donorIC;
     }
 
-    public void setDonorIC(int donorIC) {
+    public void setDonorIC(String donorIC) {
         this.donorIC = donorIC;
     }
 
-    public int getDonorPhone() {
+    public String getDonorPhone() {
         return donorPhone;
     }
 
-    public void setDonorPhone(int donorPhone) {
+    public void setDonorPhone(String donorPhone) {
         this.donorPhone = donorPhone;
     }
 
-    public double getDonorDonated() {
+    public String getDonorDonated() {
         return donorDonated;
     }
 
-    public void setDonorDonated(double donorDonated) {
+    public void setDonorDonated(String donorDonated) {
         this.donorDonated = donorDonated;
     }
 
@@ -86,24 +87,22 @@ public class Donor implements Comparable<Donor> {
 
     @Override
     public String toString() {
-        return  "[---------------Donor---------------]" + 
-                "\nName = " + donorName + 
-                "\nType = " + donorType + 
-                "\nIC = " + donorIC +
-                "\nPhone = " + donorPhone + 
-                "\nAmount Donated = RM " + donorDonated + 
-                "\nDate Donated = " + donorDateDonated;
+        return String.format("| %-22s | %-10s | %-15s | %-15s | %-10s | %-15s |",
+                donorName, donorType, donorIC, donorPhone, donorDonated, donorDateDonated);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Donor donor = (Donor) obj;
         return donorName.equals(donor.donorName);
     }
 
-//For comparing
     @Override
     public int hashCode() {
         return donorName.hashCode();
