@@ -13,7 +13,7 @@ import utility.MessageUI;
 
 public class DonorManagement_UI {
 
-    private static DoublyLinkedList<Donor> donors = new DoublyLinkedList<>();
+    private static SortedListInterface<Donor> donors = new DoublyLinkedList<>();
     private Scanner input = new Scanner(System.in);
 
     public int getMenuChoice() {

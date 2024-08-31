@@ -1,6 +1,5 @@
 package control;
 
-import adt.DoublyLinkedList;
 import adt.SortedListInterface;
 import boundary.DonorManagement_UI;
 import entity.Donor;
@@ -77,6 +76,8 @@ public class DonorManagement {
     public void addNewDonor() {
         Donor newDonor = donorUI.inputDonorDetails();
         donorList.add(newDonor);
+        donationList.add(new Donation(newDonor, newDonor.getDonorDonated(), "",0,0));
+        
         MessageUI.displayDonorAddedMessage();
     }
 
