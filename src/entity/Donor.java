@@ -87,7 +87,7 @@ public class Donor implements Comparable<Donor> {
 
     @Override
     public String toString() {
-        return String.format("| %-22s | %-10s | %-15s | %-15s | %-10s | %-15s |",
+        return String.format("| %-22s | %-10s | %-15s | %-15s | %-19s | %-15s |",
                 donorName, donorType, donorIC, donorPhone, donorDonated, donorDateDonated);
     }
 
@@ -106,5 +106,9 @@ public class Donor implements Comparable<Donor> {
     @Override
     public int hashCode() {
         return donorName.hashCode();
+    }
+
+    boolean add(Donor donor) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -92,15 +92,14 @@ public class Donation implements Comparable<Donation>{
         return o.getCategory().compareTo(this.getCategory());
     }
     
-
-    public void setTotalValue(double totalValue) {
-        this.totalValue = totalValue;
+    public void updateTotalValue() {
+        totalValue = valuePerQuantity * quantity;
     }
-   
-
+  
    
     @Override
     public String toString(){
         return String.format("| %-22s | %-10s | %-15s | %-15s |  %-14s | %-19s | %-15s |", donor.getDonorName(), donor.getDonorType(), itemDonated, category,quantity, valuePerQuantity, totalValue);
     }
+    
 }

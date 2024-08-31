@@ -93,8 +93,18 @@ public class MessageUI {
     
     public static void displayDonationListHeader() {
         System.out.println("+------------------------+------------+-----------------+-----------------+-----------------+---------------------+-----------------+\n"
-                         + "| Donor Name             | Type       | Item Name       | Category        | Quantity        | Value Per Item      | Total Value     |\n"
+                         + "| Donor Name             | Type       | Item Name       | Category        | Quantity        | Value Per Item (RM) | Total Value (RM)|\n"
                          + "+------------------------+------------+-----------------+-----------------+-----------------+---------------------+-----------------+");
+    }
+    
+    public static void displayAmendDonationListHeader() {
+        System.out.println("    +------------------------+------------+-----------------+-----------------+-----------------+---------------------+-----------------+\n"
+                         + "    | Donor Name             | Type       | Item Name       | Category        | Quantity        | Value Per Item (RM) | Total Value (RM)|\n"
+                         + "    +------------------------+------------+-----------------+-----------------+-----------------+---------------------+-----------------+");
+    }
+    
+    public static void displayAmendDonationListFooter(){
+        System.out.println("+------------------------+------------+-----------------+-----------------+-----------------+---------------------+-----------------+\n");
     }
     
     public static void displayDonationListFooter(){

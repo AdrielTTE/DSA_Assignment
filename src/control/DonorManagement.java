@@ -6,6 +6,7 @@ import boundary.DonorManagement_UI;
 import entity.Donor;
 import utility.MessageUI;
 import dao.DonorInitializer;
+import entity.Donation;
 
 /**
  *
@@ -16,7 +17,8 @@ public class DonorManagement {
     private DonorManagement_UI donorUI = new DonorManagement_UI();
     private DonorInitializer donorInitializer = new DonorInitializer();
     private SortedListInterface<Donor> donorList = donorInitializer.initializeDonors();
-
+    private SortedListInterface<Donation> donationList;
+    
     public void runDonorManagement() {
         int choice;
 
@@ -57,6 +59,21 @@ public class DonorManagement {
         } while (choice != 9);
     }
 
+    public SortedListInterface<Donation> getDonationList() {
+        return donationList;
+    }
+    
+     public SortedListInterface<Donor> getDonorList(){
+        return donorList;
+    }
+    
+     public void obtainDonorList(SortedListInterface<Donor> donorList){
+        this.donorList = donorList;
+    }
+     
+    public void obtainDonationList(SortedListInterface<Donation> donationList){
+        this.donationList = donationList;
+    }
     public void addNewDonor() {
         Donor newDonor = donorUI.inputDonorDetails();
         donorList.add(newDonor);
@@ -180,10 +197,5 @@ public class DonorManagement {
         MessageUI.displaySummaryReportMessage();
         donorUI.displayMessage("\nTotal Donors: " + donorList.getNumOfEntries());
         categorizeDonors();
-    }
-
-    public static void main(String[] args) {
-        DonorManagement donorManagement = new DonorManagement();
-        donorManagement.runDonorManagement();
     }
 }

@@ -40,33 +40,23 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
     //Adriel's part
     @Override
     public T getEntry(Integer givenPosition) {
-        int halfNumOfEntries = getNumOfEntries()/2;
-        int count;
-        if(givenPosition > 0 && givenPosition < halfNumOfEntries){
-            count=1;
-            Node currentNode = head;
-            while (count < givenPosition){
-                count++;
-                currentNode = currentNode.next;
-            }
-            
-            return currentNode.data;
-            
-        }
-        
-        else if (givenPosition > 0 && givenPosition > halfNumOfEntries){
-            count = getNumOfEntries();
-            Node currentNode = tail;  
-            while (count < givenPosition){
-                count--;
-                currentNode = currentNode.previous;
-            }
-            
-            return (T)currentNode;
-    }
-    else{
+        if (givenPosition <= 0 || givenPosition > numOfEntries) {
             System.out.println("Error: Given position is invalid!");
             return null;
+        }
+
+        if (givenPosition <= numOfEntries / 2) {
+            Node currentNode = head;
+            for (int count = 1; count < givenPosition; count++) {
+                currentNode = currentNode.next;
+            }
+            return currentNode.data;
+        } else {
+            Node currentNode = tail;
+            for (int count = numOfEntries; count > givenPosition; count--) {
+                currentNode = currentNode.previous;
+            }
+            return currentNode.data;
         }
     }
     
@@ -141,27 +131,41 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
     //Cher Wei's Part
     @Override
     public boolean remove(T anEntry) {
-        if(head == null){    //isEmpty
+        if (head == null) {  // List is empty
             return false;
-        }else{
-            Node beforeNode = null;
-            Node currentNode = head;
-            while (currentNode !=null && currentNode.data.compareTo(anEntry)< 0){
-                beforeNode = currentNode;
-                currentNode = currentNode.next;
-            }// while
-        if(currentNode != null && currentNode.data.equals(anEntry)){  //comapareTo(anEntry) ==0
-        if(currentNode == head){    
-            head = head.next;          
-        }else{
-            beforeNode.next = currentNode.next;
         }
-        numOfEntries--;
-        return true;
-        }
-        }
-        return false;
 
+        Node currentNode = head;
+
+        // Find the node with the matching entry
+        while (currentNode != null && !currentNode.data.equals(anEntry)) {
+            currentNode = currentNode.next;
+        }
+
+        if (currentNode != null) {
+            if (currentNode == head) {
+                head = head.next;
+                if (head != null) {
+                    head.previous = null;
+                }
+            } else if (currentNode == tail) {
+                tail = tail.previous;
+                if (tail != null) {
+                    tail.next = null;
+                }
+            } else {
+                Node beforeNode = currentNode.previous;
+                Node afterNode = currentNode.next;
+
+                beforeNode.next = afterNode;
+                afterNode.previous = beforeNode;
+            }
+
+            numOfEntries--;
+            return true;
+        }
+
+        return false;  // No matching entry found
     }
     
     //Amanda's Part

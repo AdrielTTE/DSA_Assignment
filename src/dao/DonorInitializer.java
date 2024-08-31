@@ -3,6 +3,7 @@ package dao;
 import adt.DoublyLinkedList;
 import adt.SortedListInterface;
 import entity.Donor;
+import entity.Event;
 
 /**
  *
@@ -10,7 +11,9 @@ import entity.Donor;
  */
 public class DonorInitializer {
 
-    public SortedListInterface<Donor> initializeDonors() {
+    
+
+    public static SortedListInterface<Donor> initializeDonors() {
         SortedListInterface<Donor> donorList = new DoublyLinkedList<>();
 
         donorList.add(new Donor("Adriel Tang Thien Ern", "Private", "030717121235", "0111112345", "Money: RM 1500.00", "12-07-2024"));
@@ -32,5 +35,17 @@ public class DonorInitializer {
         donorList.add(new Donor("Chin Hui Ling", "Private", "031214107264", "0167675465", "Money: RM 15000.00", "02-10-2024"));
 
         return donorList;
+    }
+    
+    
+    public static void addDonorToEvents(Event event, int[] donorIds, SortedListInterface<Donor> donorList) {
+        for (int donorId : donorIds) {
+            Donor donor = donorList.getEntry(donorId);
+            if (donor != null) {
+                event.setAssignedDonor(donor);
+            } else {
+                System.out.println("Debug: Donor with ID " + donorId + " not found");
+            }
+        }
     }
 }

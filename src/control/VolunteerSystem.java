@@ -26,9 +26,9 @@ public class VolunteerSystem {
 	private static SortedListInterface<Volunteer> volunteerList;
         private static SortedListInterface<Event> eventList;
         private static SortedListInterface<Donor> donorList;
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+        private static Scanner scanner = new Scanner(System.in);
+public static void startVolunteerSystem() {
+		
 		volunteerList = VolunteerData.initializeVolunteers();
                 eventList = VolunteerData.initializeEvents();
                 donorList = DonorInitializer.initializeDonors();
@@ -62,8 +62,9 @@ public class VolunteerSystem {
 					System.out.println("Exiting...");
 					return;
 				}
-				default : System.out.println("Invalid choice. Please try again.");
-				break;
+                        default : 
+                                        System.out.println("Invalid choice. Please try again.");
+                                        break;
 			}
 		}
 
