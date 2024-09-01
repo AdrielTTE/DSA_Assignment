@@ -5,6 +5,7 @@ import boundary.CharitySystemUI;
 import control.DonationManagement;
 import control.DonorManagement;
 import control.VolunteerSystem;
+import control.DoneeManagement;
 
 /**
  *
@@ -29,7 +30,7 @@ public class CharitySystem {
                     break;
 
                 case 2:
-                    //Insert Donee Management System here
+                    DoneeManagement.startDoneeManagementSystem();
                     break;
 
                 case 3:
