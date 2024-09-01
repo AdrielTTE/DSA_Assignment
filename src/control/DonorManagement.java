@@ -17,7 +17,7 @@ public class DonorManagement {
     private DonorInitializer donorInitializer = new DonorInitializer();
     private SortedListInterface<Donor> donorList = donorInitializer.initializeDonors();
     private SortedListInterface<Donation> donationList;
-    
+
     public void runDonorManagement() {
         int choice;
 
@@ -61,23 +61,24 @@ public class DonorManagement {
     public SortedListInterface<Donation> getDonationList() {
         return donationList;
     }
-    
-     public SortedListInterface<Donor> getDonorList(){
+
+    public SortedListInterface<Donor> getDonorList() {
         return donorList;
     }
-    
-     public void obtainDonorList(SortedListInterface<Donor> donorList){
+
+    public void obtainDonorList(SortedListInterface<Donor> donorList) {
         this.donorList = donorList;
     }
-     
-    public void obtainDonationList(SortedListInterface<Donation> donationList){
+
+    public void obtainDonationList(SortedListInterface<Donation> donationList) {
         this.donationList = donationList;
     }
+
     public void addNewDonor() {
         Donor newDonor = donorUI.inputDonorDetails();
         donorList.add(newDonor);
-        donationList.add(new Donation(newDonor, newDonor.getDonorDonated(), "",0,0));
-        
+        donationList.add(new Donation(newDonor, newDonor.getDonorDonated(), "", 0, 0));
+
         MessageUI.displayDonorAddedMessage();
     }
 
@@ -89,6 +90,7 @@ public class DonorManagement {
             Donor donorToRemove = new Donor(donorName);
 
             if (donorList.remove(donorToRemove)) {
+
                 MessageUI.displayDonorRemovedMessage();
                 donorRemoved = true; // Exit loop when donor is successfully removed
             } else {
@@ -104,8 +106,10 @@ public class DonorManagement {
 
     public void searchAndUpdateDonor() {
         Donor foundDonor = searchDonor();
+        Donation foundDonation = searchDonation(foundDonor);
         if (foundDonor != null) {
-            donorUI.updateDonor(foundDonor);
+            donorUI.updateDonor(foundDonor, foundDonation);
+            System.out.println(foundDonor);
             MessageUI.displayDonorDetailsUpdatedMessage();
         } else {
             MessageUI.displayDonorNotFoundMessage();
@@ -131,7 +135,22 @@ public class DonorManagement {
                 }
             }
         }
+
         return foundDonor;
+    }
+
+    public Donation searchDonation(Donor foundDonor) {
+        Donation foundDonation = new Donation();
+        foundDonation.setDonor(foundDonor);
+
+        for (int i = 1; i <= donationList.getNumOfEntries(); i++) {
+            if (foundDonation.getDonor().equals(donationList.getEntry(i).getDonor())) {
+                foundDonation = donationList.getEntry(i);
+                System.out.println(foundDonation);
+            }
+        }
+
+        return foundDonation;
     }
 
     public void listDonors() {

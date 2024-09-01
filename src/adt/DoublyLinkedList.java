@@ -1,4 +1,3 @@
-
 package adt;
 
 import java.util.Comparator;
@@ -7,12 +6,12 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
 
     private Node head;
     private Node tail;
-    private int numOfEntries=0;
-    
+    private int numOfEntries = 0;
+
     //Jacquelin's functions
     @Override
     public boolean filter(Comparable data) {
-         Node current = head;
+        Node current = head;
         while (current != null) {
             if (current.data.equals(data)) {
                 return true;
@@ -25,7 +24,7 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
 
     @Override
     public boolean replace(Comparable oldData, Comparable newData) {
-         Node current = head;
+        Node current = head;
         while (current != null) {
             if (current.data.equals(oldData)) {
                 current.data = (T) newData;
@@ -35,8 +34,7 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
         }
         return false;
     }
-    
-   
+
     //Adriel's part
     @Override
     public T getEntry(Integer givenPosition) {
@@ -59,11 +57,12 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
             return currentNode.data;
         }
     }
-    
+
     @Override
     public boolean sort(Comparator comparator) {
-        if (head == null || head.next == null) 
+        if (head == null || head.next == null) {
             return true;
+        }
 
         boolean swapped;
         do {
@@ -84,10 +83,8 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
 
         return true;
     }
-    
 
     //Qi Yao's part
-    
     @Override
     public boolean add(T newEntry) {
         Node newNode = new Node(newEntry);
@@ -167,17 +164,17 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
 
         return false;  // No matching entry found
     }
-    
+
     //Amanda's Part
     @Override
     public boolean isEmpty() {
-         return head == null;
-        
+        return head == null;
+
     }
-    
+
     @Override
     public void clear() {
-         while (head != null) {
+        while (head != null) {
             Node temp = head;
             head = head.next;
             // Help the garbage collector by nullifying references
@@ -190,34 +187,29 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
         tail = null; // Reset the tail as well
     }
 
-   
-
     @Override
     public Integer getNumOfEntries() {
-         return numOfEntries;
+        return numOfEntries;
 
     }
-    
+
     @Override
     public String toString() {
-    StringBuilder result = new StringBuilder();
-    Node current = head;
+        StringBuilder result = new StringBuilder();
+        Node current = head;
 
-    while (current != null) {
-        result.append(current.data);
-        if (current.next != null) {
-            result.append("\n\n");
+        while (current != null) {
+            result.append(current.data);
+            if (current.next != null) {
+                result.append("\n\n");
+            }
+            current = current.next;
         }
-        current = current.next;
+
+        return result.toString();
     }
 
-    return result.toString();
-}
-    
-    
-  
-   
-private Node findMiddle(Node start, Node end) {
+    private Node findMiddle(Node start, Node end) {
         Node slow = start;
         Node fast = start;
 
@@ -239,8 +231,8 @@ private Node findMiddle(Node start, Node end) {
         Node end = null;
 
         while (start != end) {
-            Node middle = findMiddle(start, end);  // Updated findMiddle method to take start and end
-
+            // Updated findMiddle method to take start and end
+            Node middle = findMiddle(start, end);
             if (middle == null) {
                 return null;
             }
@@ -257,33 +249,27 @@ private Node findMiddle(Node start, Node end) {
         }
 
         return null;
-}
+    }
 
-    
     private class Node {
-    
-    //To add getDataprivate class Node {
 
-    private T data;
-    private Node next;
-    private Node previous;
+        //To add getDataprivate class Node {
+        private T data;
+        private Node next;
+        private Node previous;
 
-    private Node(T data) {
-      this.data = data;
-      next = null;
-      previous = null;
+        private Node(T data) {
+            this.data = data;
+            next = null;
+            previous = null;
+        }
+
+        private Node(T data, Node next, Node previous) {
+            this.data = data;
+            this.next = next;
+            this.previous = previous;
+        }
+
     }
 
-    private Node(T data, Node next, Node previous) {
-      this.data = data;
-      this.next = next;
-      this.previous = previous;
-    }
-    
-  
-  }
-    
 }
-
-
-

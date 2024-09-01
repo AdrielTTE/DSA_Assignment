@@ -104,7 +104,7 @@ public class MessageUI {
     }
     
     public static void displayAmendDonationListFooter(){
-        System.out.println("+------------------------+------------+-----------------+-----------------+-----------------+---------------------+-----------------+\n");
+        System.out.println("    +------------------------+------------+-----------------+-----------------+-----------------+---------------------+-----------------+\n");
     }
     
     public static void displayDonationListFooter(){

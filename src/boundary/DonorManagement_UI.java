@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.Comparator;
 import adt.DoublyLinkedList;
 import adt.SortedListInterface;
+import entity.Donation;
 import entity.Donor;
 import utility.MessageUI;
 
@@ -128,7 +129,7 @@ public class DonorManagement_UI {
     }
 
     // Update Donor
-    public void updateDonor(Donor foundDonor) {
+    public void updateDonor(Donor foundDonor, Donation foundDonation) {
         boolean done = false;
 
         while (!done) {
@@ -139,18 +140,22 @@ public class DonorManagement_UI {
                 case 1:
                     String newName = inputValidString("Enter new Donor Name: ");
                     foundDonor.setDonorName(newName);
+                    foundDonation.getDonor().setDonorName(newName);
                     break;
                 case 2:
                     String newType = inputValidString("Enter new Donor Type (Government/Private/Public): ");
                     foundDonor.setDonorType(newType);
+                    foundDonation.getDonor().setDonorType(newType);
                     break;
                 case 3:
                     String newIC = inputValidateIC_Phone("Enter new Donor IC: ");
                     foundDonor.setDonorIC(newIC);
+                    foundDonation.getDonor().setDonorIC(newIC);
                     break;
                 case 4:
                     String newPhone = inputValidateIC_Phone("Enter new Donor Phone Number: ");
                     foundDonor.setDonorPhone(newPhone);
+                    foundDonation.getDonor().setDonorPhone(newPhone);
                     break;
                 case 5:
                     MessageUI.displayDonationType();
@@ -179,10 +184,13 @@ public class DonorManagement_UI {
                             throw new IllegalArgumentException("Invalid choice. Please select a valid option.");
                     }
                     foundDonor.setDonorDonated(newDonated);
+                    foundDonation.getDonor().setDonorDonated(newDonated);
+                    foundDonation.setItemDonated(newDonated);
                     break;
                 case 6:
                     String newDateDonated = inputValidString("Enter new Donor Date Donated (DD-MM-YYYY): ");
                     foundDonor.setDonorDateDonated(newDateDonated);
+                    foundDonation.getDonor().setDonorDateDonated(newDateDonated);
                     break;
                 case 7:
                     done = true;

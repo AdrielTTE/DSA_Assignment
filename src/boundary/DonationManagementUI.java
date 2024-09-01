@@ -3,9 +3,7 @@ package boundary;
 import adt.SortedListInterface;
 import java.util.Scanner;
 import control.DonationManagement;
-import boundary.CharitySystemUI;
 import utility.CheckNumberInput;
-import control.CharitySystem;
 import entity.Donation;
 import entity.Donor;
 import utility.MessageUI;
@@ -80,7 +78,7 @@ public class DonationManagementUI {
         }
 
         System.out.println("Donation successfully added!\n");
-        donationManagement.sortList();
+        donationManagement.sortList(donationManagement.getDonationList());
         System.out.println(donationManagement.getDonationList().toString());
     }
 
@@ -213,8 +211,6 @@ public class DonationManagementUI {
     public Donor changeDonor() {
         Donor donor = new Donor();
         String itemName;
-        int quantity;
-        double valuePerItem;
         String category;
 
         //To create Donor
@@ -284,7 +280,7 @@ public class DonationManagementUI {
     }
 
     public int displayListMenu(SortedListInterface<Donation> donationList) {
-        donationManagement.sortList();
+        donationManagement.sortList(donationManagement.getDonationList());
         MessageUI.displayDonationListHeader();
         System.out.println(donationList.toString());
         MessageUI.displayDonationListFooter();

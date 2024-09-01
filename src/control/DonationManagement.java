@@ -15,9 +15,6 @@ import boundary.DonationManagementUI;
 
 import dao.DonationManagementInitializer;
 
-import utility.CheckNumberInput;
-import utility.MessageUI;
-
 // Pass object as parameter to access from different classes
 public class DonationManagement {
 
@@ -31,7 +28,7 @@ public class DonationManagement {
     //Constructor
     public DonationManagement() {
         this.donationManagementUI = new DonationManagementUI(this);
-        sortList();
+        sortList(donationList);
 
     }
 
@@ -108,9 +105,10 @@ public class DonationManagement {
     //For removing a Donation
     public boolean removeDonation() {
         boolean result = false;
-
-        if (donationList.remove(donationList.getEntry(donationManagementUI.removeDonationMenu()))) {
-
+        int entryToRemove = donationManagementUI.removeDonationMenu();
+        if (donationList.remove(donationList.getEntry(entryToRemove))) {
+            System.out.println(entryToRemove);
+            donorList.remove(donorList.getEntry(entryToRemove));
             result = true;
             donationManagementUI.removedDonation(result);
         }
@@ -168,14 +166,21 @@ public class DonationManagement {
         boolean result = false;
         Donation amendDonation = new Donation();
         choice = donationManagementUI.amendDonationMenu();
+        amendDonation = donationList.getEntry(choice);
+
         if (choice != 0) {
             switch (donationManagementUI.attributeToChange(amendDonation)) {
                 case 1:
                     amendDonation.setDonor(donationManagementUI.changeDonor());
+                    amendDonation.getDonor().setDonorDonated(donationList.getEntry(choice).getItemDonated());
+                    amendDonation.getDonor().setDonorDateDonated(donationList.getEntry(choice).getDonor().getDonorDateDonated());
+                    donorList.replace(donorList.getEntry(choice), amendDonation.getDonor());
                     break;
 
                 case 2:
                     amendDonation.setItemDonated(donationManagementUI.changeDonatedItem());
+                    amendDonation.getDonor().setDonorDonated(amendDonation.getItemDonated());
+
                     break;
 
                 case 3:
@@ -198,6 +203,7 @@ public class DonationManagement {
             }
 
             donationManagementUI.displayChangedDonation(amendDonation);
+
         }
 
     }
@@ -389,8 +395,7 @@ public class DonationManagement {
         donationManagementUI.endOfCategoricalReport();
     }
 
-    //priva
-    public void sortList() {
+    public void sortList(SortedListInterface<Donation> donationList) {
         Comparator<Donation> donorComparator = new Comparator<Donation>() {
             @Override
             public int compare(Donation d1, Donation d2) {

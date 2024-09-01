@@ -11,8 +11,6 @@ import entity.Event;
  */
 public class DonorInitializer {
 
-    
-
     public static SortedListInterface<Donor> initializeDonors() {
         SortedListInterface<Donor> donorList = new DoublyLinkedList<>();
 
@@ -36,8 +34,7 @@ public class DonorInitializer {
 
         return donorList;
     }
-    
-    
+
     public static void addDonorToEvents(Event event, int[] donorIds, SortedListInterface<Donor> donorList) {
         for (int donorId : donorIds) {
             Donor donor = donorList.getEntry(donorId);

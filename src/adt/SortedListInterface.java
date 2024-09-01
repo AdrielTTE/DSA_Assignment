@@ -2,29 +2,26 @@ package adt;
 
 import java.util.Comparator;
 
-public interface SortedListInterface<T extends Comparable<T>>{
- 
-  public boolean add(T newEntry);
+public interface SortedListInterface<T extends Comparable<T>> {
 
-  public boolean remove(T anEntry);
+    public boolean add(T newEntry);
 
-  public boolean filter(T data);
+    public boolean remove(T anEntry);
 
-  public void clear();
-  
-  public boolean replace(T oldData, T newData);
+    public boolean filter(T data);
 
-  public Integer getNumOfEntries();
-  
-  public T getEntry(Integer givenPosition);
+    public void clear();
 
-  public boolean isEmpty();
-  
-  //To change to sortData
-  public boolean sort(Comparator<T> comparator);//method refers to how the user wishes to sort the list
-  
-  public T search(T entry);
-  
+    public boolean replace(T oldData, T newData);
 
-} 
+    public Integer getNumOfEntries();
 
+    public T getEntry(Integer givenPosition);
+
+    public boolean isEmpty();
+
+    public boolean sort(Comparator<T> comparator);
+
+    public T search(T entry);
+
+}

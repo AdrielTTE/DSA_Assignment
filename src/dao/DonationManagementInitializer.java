@@ -1,7 +1,5 @@
 package dao;
 
-import control.DonationManagement;
-import boundary.DonationManagementUI;
 import adt.DoublyLinkedList;
 import adt.SortedListInterface;
 import entity.Donation;
@@ -19,24 +17,24 @@ public class DonationManagementInitializer {
 
     public SortedListInterface<Donation> initiateDonations() {
         SortedListInterface<Donation> donationList = new DoublyLinkedList<>();
-        
-        donationList.add(new Donation(new Donor("Adriel", "Private", "030717140615", "0163231053", "Cash", "30/8/2024"), "Cash", "Money", 1, 9000));
-        donationList.add(new Donation(new Donor("Amanda", "Public", "030897162361234", "0168673618", "Pens", "30/8/2024"), "Pens", "Stationary", 200, 2));
-        donationList.add(new Donation(new Donor("Cher Wei", "Government", "03081793727", "0109279382", "Note Books", "30/8/2024"), "Note Books", "Books", 500, 5));
-        donationList.add(new Donation(new Donor("Jacquelin", "Private", "0109293892", "018917198", "T-Shirts", "30/8/2024"), "T-Shirts", "Clothes", 200, 20));
-        donationList.add(new Donation(new Donor("Qi Yao", "Public", "03019873815", "0163231053", "Cash", "30/8/2024"), "Cash", "Money", 1, 9000));
-        donationList.add(new Donation(new Donor("Matthew", "Private", "03019873816", "0163231054", "Cheque", "29/8/2024"), "Cheque", "Money", 2, 5000));
-        donationList.add(new Donation(new Donor("Gerard", "Government", "03019873817", "0163231055", "Beddings", "28/8/2024"), "Beddings", "Sleep Items", 3, 200));
-        donationList.add(new Donation(new Donor("Amos", "Public", "03019873818", "0163231056", "Cash", "27/8/2024"), "Cash", "Money", 1, 12000));
-        donationList.add(new Donation(new Donor("Andrew", "Private", "03019873819", "0163231057", "Canned Food", "26/8/2024"), "Canned Food", "Food Items", 2000, 10));
-        donationList.add(new Donation(new Donor("Keith", "Government", "03019873820", "0163231058", "Laptop", "25/8/2024"), "Laptop", "Other", 4, 2500));
-        donationList.add(new Donation(new Donor("Kavern", "Public", "03019873821", "0163231059", "Cash", "24/8/2024"), "Cash", "Money", 1, 7000));
-        donationList.add(new Donation(new Donor("Timothy", "Private", "03019873822", "0163231060", "Cheque", "23/8/2024"), "Cheque", "Money", 2, 4000));
-        donationList.add(new Donation(new Donor("Stephanie", "Government", "03019873823", "0163231061", "Mattress", "22/8/2024"), "Mattress", "Sleep Items", 10, 500));
-        donationList.add(new Donation(new Donor("Nicole", "Public", "03019873824", "0163231062", "Cash", "21/8/2024"), "Cash", "Money", 1, 11000));
-        donationList.add(new Donation(new Donor("Myan Seng", "Private", "03019873825", "0163231063", "Cheque", "20/8/2024"), "Cheque", "Money", 2, 6000));
-        
-        
+
+        donationList.add(new Donation(new Donor("Adriel Tang Thien Ern", "Private", "030717121235", "0111112345", "Money: RM 1500.00", "12-07-2024"), "Cash", "Money", 1, 1500));
+        donationList.add(new Donation(new Donor("Adriel Tang Thien Ern", "Private", "030717121235", "0111112345", "Money: RM 10000.00", "9-08-2024"), "Cash", "Money", 1, 10000));
+        donationList.add(new Donation(new Donor("Amanda Lee Mun Yee", "Public", "03060133456", "0161227677", "Money: RM 1000.00", "28-07-2024"), "Cash", "Money", 1, 1000));
+        donationList.add(new Donation(new Donor("Lee Cher Wei", "Government", "030507101261", "0164642610", "Toiletries", "01-08-2024"), "Toiletries", "Other", 200, 20));
+        donationList.add(new Donation(new Donor("Yeoh Qi Yao", "Government", "030421122253", "0173231111", "Others: Toys", "09-08-2024"), "Toys", "Other", 200, 50));
+        donationList.add(new Donation(new Donor("Chan Wai Leong", "Private", "030517142023", "0112673433", "Money: RM 15000.00", "12-08-2024"), "Cash", "Money", 1, 15000));
+        donationList.add(new Donation(new Donor("Wong Soon Kit", "Private", "030111102311", "0121764321", "Money: RM 7500.00", "10-08-2024"), "Cash", "Money", 1, 7500));
+        donationList.add(new Donation(new Donor("Chew Chun Sheng", "Private", "030726102567", "0164325674", "Money: RM 25000.00", "09-09-2024"), "Cash", "Money", 1, 25000));
+        donationList.add(new Donation(new Donor("Tan Xing Ye", "Private", "030123144564", "0124526547", "Money: RM 150000.00", "05-07-2024"), "Cash", "Money", 1, 150000));
+        donationList.add(new Donation(new Donor("Chong Zheng Yao", "Private", "000711142347", "01076035246", "Money: RM 200000.00", "24-06-2024"), "Cash", "Money", 1, 200000));
+        donationList.add(new Donation(new Donor("Jayvian", "Private", "010203102001", "0162456763", "Clothes", "26-08-2024"), "Clothes", "Clothes", 1, 7000));
+        donationList.add(new Donation(new Donor("Lai Kok Sheng", "Government", "030714102515", "0131234345", "Food", "27-08-2024"), "Food", "Food Items", 900, 15));
+        donationList.add(new Donation(new Donor("Koh Zhen Pin", "Private", "031104105677", "0165656737", "Money: RM 3500.00", "28-08-2024"), "Cash", "Money", 1, 3500));
+        donationList.add(new Donation(new Donor("Chuah Chia Yun", "Public", "020112102221", "0121667543", "Toiletries", "29-09-2024"), "Toiletries", "Other", 200, 11));
+        donationList.add(new Donation(new Donor("Mow Li Heng", "Government", "001122143573", "01111121232", "Clothes", "01-08-2024"), "Clothes", "Clothes", 150, 6));
+        donationList.add(new Donation(new Donor("Chin Hui Ling", "Private", "031214107264", "0167675465", "Money: RM 15000.00", "02-10-2024"), "Cash", "Money", 1, 15000));
+
         return donationList;
     }
 
