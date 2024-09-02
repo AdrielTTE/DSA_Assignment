@@ -299,19 +299,19 @@ public class DonationManagement {
         return searchedDonationList;
     }
 
-    public SortedListInterface<Donation> filterByDonorType() {
-        SortedListInterface<Donation> searchedDonationList = new DoublyLinkedList<>();
-        Donation searchItem = new Donation();
-        searchItem.getDonor().setDonorType(donationManagementUI.getDonorType());
-
-        int count = 1;
-        while (count <= donationList.getNumOfEntries()) {
-            searchedDonationList.add(donationList.search(searchItem));
-            count++;
+    public void filterByDonorType() {
+    SortedListInterface<Donation> searchedDonationList = new DoublyLinkedList<>();
+    String desiredDonorType = donationManagementUI.getDonorType();
+    
+    for (int i = 1; i <= donationList.getNumOfEntries(); i++) {
+        Donation currentDonation = donationList.getEntry(i);
+        if (currentDonation.getDonor().getDonorType().equalsIgnoreCase(desiredDonorType)) {
+            searchedDonationList.add(currentDonation);
         }
-
-        return searchedDonationList;
     }
+    donationManagementUI.displayFilteredBy(searchedDonationList);
+    
+}
 
     public void generateReport() {
         switch (donationManagementUI.generateReportMenu()) {
@@ -320,7 +320,7 @@ public class DonationManagement {
                 break;
 
             case 2:
-                catecorigalBreakDownReport();
+                categoricalBreakDownReport();
                 break;
 
             case 3:
@@ -344,7 +344,7 @@ public class DonationManagement {
 
     }
 
-    public void catecorigalBreakDownReport() {
+    public void categoricalBreakDownReport() {
         SortedListInterface<Donation> moneyDonationsList = new DoublyLinkedList<>();
         SortedListInterface<Donation> clothesDonationsList = new DoublyLinkedList<>();
         SortedListInterface<Donation> sleepItemsDonationsList = new DoublyLinkedList<>();

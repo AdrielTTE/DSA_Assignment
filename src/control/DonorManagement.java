@@ -109,7 +109,6 @@ public class DonorManagement {
         Donation foundDonation = searchDonation(foundDonor);
         if (foundDonor != null) {
             donorUI.updateDonor(foundDonor, foundDonation);
-            System.out.println(foundDonor);
             MessageUI.displayDonorDetailsUpdatedMessage();
         } else {
             MessageUI.displayDonorNotFoundMessage();
@@ -146,7 +145,6 @@ public class DonorManagement {
         for (int i = 1; i <= donationList.getNumOfEntries(); i++) {
             if (foundDonation.getDonor().equals(donationList.getEntry(i).getDonor())) {
                 foundDonation = donationList.getEntry(i);
-                System.out.println(foundDonation);
             }
         }
 

@@ -323,11 +323,25 @@ public class DonationManagementUI {
         System.out.print("Enter Donor Name: ");
         return input.nextLine();
     }
-
+    
+    //To change to switch case
     public String getDonorType() {
-        System.out.print("Enter Donor Type: ");
-        return input.nextLine();
+        System.out.println("Enter Donor Type: ");
+        System.out.println("1. Government");
+        System.out.println("2. Private");
+        System.out.println("3. Public");
+        switch(CheckNumberInput.numChk(1, 3)){
+            case 1:
+                return "Government";
+            
+            case 2:
+                return "Private";
+                
+            default:
+                return "Public";
+        }
     }
+
 
     public int generateReportMenu() {
         System.out.println("\nGenerate Report");
