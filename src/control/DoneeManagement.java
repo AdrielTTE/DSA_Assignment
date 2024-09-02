@@ -12,12 +12,16 @@ import java.util.Scanner;
 
 public class DoneeManagement {
 
-    private DoneeManagementUI doneeUI = new DoneeManagementUI();
-    private DoneeInitializer doneeInitializer = new DoneeInitializer();
-    private SortedListInterface<Donee> doneeList = doneeInitializer.initializeDonees();
+    private SortedListInterface<Donee> doneeList = new DoublyLinkedList<>();
+    
+    private final DoneeManagementUI doneeUI = new DoneeManagementUI();
+    private final DoneeInitializer doneeInitializer = new DoneeInitializer();
+    private final Scanner scanner = new Scanner(System.in);
+   
 
-    private Scanner scanner = new Scanner(System.in);
-    private static final int START_ID = 1004;
+    public DoneeManagement() {
+        doneeList = doneeInitializer.initializeDonees();
+    }
 
     public static void startDoneeManagementSystem() {
         DoneeManagement doneeManagement = new DoneeManagement();
@@ -68,7 +72,7 @@ public class DoneeManagement {
     }
 
     private String generateNextId() {
-        int maxId = START_ID - 1;
+        int maxId = 0 ;
 
         for (int i = 1; i <= doneeList.getNumOfEntries(); i++) {
             Donee donee = doneeList.getEntry(i);
@@ -222,7 +226,6 @@ public class DoneeManagement {
     }
 
     private void updateDonee() {
-        // List all donees so the user can choose which one to update
 
         System.out.printf("%-2s %-25s %-10s %-15s %-20s%n", "No.|", "Donee Name ", "| ID ", "| Phone Number ", " | Donee Type    |");
         System.out.println("----------------------------------------------------------------------------");
@@ -264,12 +267,33 @@ public class DoneeManagement {
 
             switch (choice) {
                 case 1:
+                    // Display current Donee details
                     System.out.println("Current Donee Name: " + doneeToUpdate.getDoneeName());
+
+// Prompt for new Donee Name
                     System.out.print("Enter new Donee Name: ");
                     String newName = scanner.nextLine();
+
+// Check if the new name contains numbers
                     if (!newName.matches(".*\\d.*")) {
+                        // Check if the new name is unique
                         if (isUniqueDoneeName(newName)) {
-                            doneeToUpdate.setDoneeName(newName);
+                            // Create a new Donee with the updated name and retain the old Donee data
+                            Donee updatedDonee = new Donee(
+                                    newName,
+                                    doneeToUpdate.getDoneeType(), // Assuming you have a method to get doneeType
+                                    doneeToUpdate.getDoneeID(),
+                                    doneeToUpdate.getDoneePhone(),
+                                    doneeToUpdate.getDoneeReceived(), // Assuming you have a method to get doneeReceived
+                                    doneeToUpdate.getDoneeDateCreated() // Assuming you have a method to get doneeDateCreated
+                            );
+
+                            // Remove the old Donee from the list
+                            doneeList.remove(doneeToUpdate);
+
+                            // Add the updated Donee to the list
+                            doneeList.add(updatedDonee);
+
                             System.out.println("Donee Name updated successfully.");
                         } else {
                             System.out.println("Error: The Donee Name is already in use.");

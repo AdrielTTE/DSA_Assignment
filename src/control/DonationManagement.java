@@ -300,18 +300,18 @@ public class DonationManagement {
     }
 
     public void filterByDonorType() {
-    SortedListInterface<Donation> searchedDonationList = new DoublyLinkedList<>();
-    String desiredDonorType = donationManagementUI.getDonorType();
-    
-    for (int i = 1; i <= donationList.getNumOfEntries(); i++) {
-        Donation currentDonation = donationList.getEntry(i);
-        if (currentDonation.getDonor().getDonorType().equalsIgnoreCase(desiredDonorType)) {
-            searchedDonationList.add(currentDonation);
+        SortedListInterface<Donation> searchedDonationList = new DoublyLinkedList<>();
+        String desiredDonorType = donationManagementUI.getDonorType();
+
+        for (int i = 1; i <= donationList.getNumOfEntries(); i++) {
+            Donation currentDonation = donationList.getEntry(i);
+            if (currentDonation.getDonor().getDonorType().equalsIgnoreCase(desiredDonorType)) {
+                searchedDonationList.add(currentDonation);
+            }
         }
+        donationManagementUI.displayFilteredBy(searchedDonationList);
+
     }
-    donationManagementUI.displayFilteredBy(searchedDonationList);
-    
-}
 
     public void generateReport() {
         switch (donationManagementUI.generateReportMenu()) {
@@ -385,13 +385,35 @@ public class DonationManagement {
             }
         }
         donationManagementUI.categoricalReport();
-        donationManagementUI.displayCategoricalReport(moneyDonationsList, "Money");
-        donationManagementUI.displayCategoricalReport(clothesDonationsList, "Clothes");
-        donationManagementUI.displayCategoricalReport(sleepItemsDonationsList, "Sleep Items");
-        donationManagementUI.displayCategoricalReport(foodItemsDonationsList, "Food Items");
-        donationManagementUI.displayCategoricalReport(booksDonationsList, "Books");
-        donationManagementUI.displayCategoricalReport(stationaryDonationsList, "Stationary");
-        donationManagementUI.displayCategoricalReport(othersDonationsList, "Others");
+
+        if (!moneyDonationsList.isEmpty()) {
+            donationManagementUI.displayCategoricalReport(moneyDonationsList, "Money");
+        }
+
+        if (!clothesDonationsList.isEmpty()) {
+            donationManagementUI.displayCategoricalReport(clothesDonationsList, "Clothes");
+        }
+
+        if (!sleepItemsDonationsList.isEmpty()) {
+            donationManagementUI.displayCategoricalReport(sleepItemsDonationsList, "Sleep Items");
+        }
+
+        if (!foodItemsDonationsList.isEmpty()) {
+            donationManagementUI.displayCategoricalReport(foodItemsDonationsList, "Food Items");
+        }
+
+        if (!booksDonationsList.isEmpty()) {
+            donationManagementUI.displayCategoricalReport(booksDonationsList, "Books");
+        }
+
+        if (!stationaryDonationsList.isEmpty()) {
+            donationManagementUI.displayCategoricalReport(stationaryDonationsList, "Stationary");
+        }
+
+        if (!othersDonationsList.isEmpty()) {
+            donationManagementUI.displayCategoricalReport(othersDonationsList, "Others");
+        }
+
         donationManagementUI.endOfCategoricalReport();
     }
 
