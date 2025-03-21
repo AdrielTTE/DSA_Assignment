@@ -171,7 +171,7 @@ public class DoublyLinkedList<T extends Comparable<T>> implements SortedListInte
         return head == null;
 
     }
-
+    //This is a test
     @Override
     public void clear() {
         while (head != null) {
