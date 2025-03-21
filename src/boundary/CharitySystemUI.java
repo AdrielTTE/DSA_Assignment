@@ -8,6 +8,8 @@ import utility.CheckNumberInput;
  * @author Adriel
  */
 
+ //Test
+
 public class CharitySystemUI {
    public CharitySystemUI(){
 
